@@ -77,10 +77,15 @@ body {
   }
 
   .navbar {
-    min-height: 4em;
     background-color: $primary-compliment-color;
-
     width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    font-size: 1.5em;
+    line-height: 2;
+    padding: 0.3em;
+
 
     @include transition(all 0.4s ease);
 
@@ -88,8 +93,31 @@ body {
       position: fixed;
       top: 0;
     }
+
+    .search-form {
+      margin-right: 1em;
+    }
   }
 }
+
+.navigation {
+  display: flex;
+  margin: auto;
+  width: 50%;
+
+  li {
+    list-style: none;
+    margin: 0 1em;
+    color: #fff;
+
+    a {
+      color: #fff;
+      font-weight: 700;
+    }
+
+  }
+}
+
 
 @include keyframes(move-slideshow) {
   0% {
@@ -129,3 +157,8 @@ body {
   }
 }
 
+@media (max-width: 880px) {
+  .header .navbar .search-form {
+    margin: 0;
+  }
+}

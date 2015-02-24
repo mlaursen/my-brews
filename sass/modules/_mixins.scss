@@ -11,10 +11,16 @@
           transform: $anim;
 }
 
-@mixin transition($transition) {
-  -webkit-transition: $transition;
-     -moz-transition: $transition;
-          transition: $transition;
+@mixin transition($transition, $transition2:null) {
+  @if $transition2 != null {
+    -webkit-transition: $transition, $transition2;
+       -moz-transition: $transition, $transition2;
+            transition: $transition, $transition2;
+  } @else {
+    -webkit-transition: $transition;
+       -moz-transition: $transition;
+            transition: $transition;
+  }
 }
 
 @mixin animation($animation) {

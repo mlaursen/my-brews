@@ -1,0 +1,97 @@
+@import "modules/colors";
+@import "modules/mixins";
+
+* {
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+
+.header {
+  background-color: $orange;
+
+  .wrapper {
+    width: 100%;
+    padding: 0;
+
+    > div {
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .brand {
+      font-family: 'Lato', serif;
+      font-size: 4em;
+      width: 20%;
+    }
+    
+    .marquee {
+      position: relative;
+      background-color: #fff;
+      height: 160px;
+      width: 60%;
+      margin: auto;
+      overflow: hidden;
+
+      @include box-shadow(0 0 10px rgba(0, 0, 0, 0.3));
+
+      &:before,
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 50px;
+        z-index: 1;
+      }
+
+      &:before {
+        left: 0;
+
+        @include background-gradient(left, rgba(255, 255, 255, 100), rgba(255, 255, 255, 0));
+      }
+
+      &:after {
+        right: 0;
+
+        @include background-gradient(left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 100));
+      }
+
+      > .slide {
+        background: url('../imgs/header.png');
+        width: 1456px;
+        height: 100%;
+
+        @include transition(opacity 0.5s ease-out);
+        @include animation(move-slideshow 30s linear infinite);
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+
+  .navbar {
+    min-height: 4em;
+    background-color: $red;
+  }
+}
+
+@include keyframes(move-slideshow) {
+  0% {
+    @include transform(translateX(0));
+  }
+
+  50% {
+    @include transform(translateX(-300px));
+  }
+
+  100% {
+    @include transform(translateX(0));
+  }
+}

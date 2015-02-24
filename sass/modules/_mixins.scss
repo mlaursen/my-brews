@@ -43,3 +43,9 @@
      -moz-box-shadow: $shadow;
           box-shadow: $shadow;
 }
+
+@mixin anim-duration($time) {
+  -webkit-animation-delay: $time;
+     -moz-animation-delay: $time;
+          animation-delay: $time;
+}

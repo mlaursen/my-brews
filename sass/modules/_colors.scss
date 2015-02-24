@@ -11,6 +11,7 @@ $navy-green: #478982;
 $fuchsia: #f102be;
 $purple: #b10dc9;
 $white: #f9f6e5;
+$ghost-white: rgba(248, 248, 255, 100);
 $black: #000;
 $light-gray: #747474;
 $dark-gray: #3c3c3c;
@@ -20,3 +21,6 @@ $primary-compliment-color: $blue;
 
 $secondary-color: $green;
 $secondary-compliment-color: $red;
+
+$white-0: rgba(255, 255, 255, 0);
+$white-1: rgba(255, 255, 255, 100);

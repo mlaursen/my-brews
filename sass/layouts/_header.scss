@@ -1,6 +1,7 @@
 @import "modules/colors";
 @import "modules/mixins";
 
+$header-img-size: 1456px;
 * {
   margin: 0;
 }
@@ -12,7 +13,7 @@ body {
 
 
 .header {
-  background-color: $orange;
+  background-color: $ghost-white;
 
   .wrapper {
     width: 100%;
@@ -24,8 +25,7 @@ body {
     }
 
     .brand {
-      font-family: 'Lato', serif;
-      font-size: 4em;
+      font-size: 3.5em;
       width: 20%;
     }
     
@@ -52,18 +52,18 @@ body {
       &:before {
         left: 0;
 
-        @include background-gradient(left, rgba(255, 255, 255, 100), rgba(255, 255, 255, 0));
+        @include background-gradient(left, $white-1, $white-0);
       }
 
       &:after {
         right: 0;
 
-        @include background-gradient(left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 100));
+        @include background-gradient(left, $white-0, $white-1);
       }
 
       > .slide {
         background: url('../imgs/header.png');
-        width: 1456px;
+        width: $header-img-size;
         height: 100%;
 
         @include transition(opacity 0.5s ease-out);
@@ -78,7 +78,16 @@ body {
 
   .navbar {
     min-height: 4em;
-    background-color: $red;
+    background-color: $primary-compliment-color;
+
+    width: 100%;
+
+    @include transition(all 0.4s ease);
+
+    &.sticky {
+      position: fixed;
+      top: 0;
+    }
   }
 }
 
@@ -88,10 +97,35 @@ body {
   }
 
   50% {
-    @include transform(translateX(-300px));
+    @include transform(translateX(#{(1104 - $header-img-size)}));
   }
 
   100% {
     @include transform(translateX(0));
   }
 }
+
+@include keyframes(move-slideshow-media) {
+  0% {
+    @include transform(translateX(0));
+  }
+
+  50% {
+    @include transform(translateX(-850px));
+  }
+
+  100% {
+    @include transform(translateX(0));
+  }
+}
+
+@media (max-width: 1490px) {
+  .header .wrapper .brand {
+    font-size: 2.5em;
+  }
+
+  .header .wrapper .marquee > .slide {
+    @include animation(move-slideshow-media 60s linear infinite);
+  }
+}
+

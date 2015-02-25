@@ -2,13 +2,10 @@
 @import "modules/mixins";
 
 $header-img-size: 1456px;
-* {
-  margin: 0;
-}
-
 html,
 body {
   height: 100%;
+  margin: 0;
 }
 
 

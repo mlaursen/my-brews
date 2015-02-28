@@ -1,7 +1,10 @@
 angular.module('MyBeerApp', [
     'ngRoute',
     'ngSanitize'
-]).config(function ($routeProvider) {
+]).constant('REST_CALL', {
+  'BASE': '/api',
+  'BEER': '/beer'
+}).config(function ($routeProvider) {
   'use strict';
 
   $routeProvider
@@ -9,7 +12,7 @@ angular.module('MyBeerApp', [
       templateUrl: 'views/calendar.html',
       controller: 'CalendarCtrl',
       controllerAs: 'calendar'
-    })/*
+    })
     .when('/calendar/:date', {
       templateUrl: 'views/calendarDate.html',
       controller: 'CalendarDateCtrl',
@@ -18,15 +21,15 @@ angular.module('MyBeerApp', [
     .when('/beer', {
       templateUrl: 'views/beers.html',
       controller: 'BeerCtrl',
-      controllerAs: 'beer'
+      controllerAs: 'beers'
     })
     .when('/beer/:id', {
       templateUrl: 'views/beer.html',
       controller: 'BeerCtrl',
       controllerAs: 'beer'
-    })*/
+    })
     .otherwise({
-      redirectTo: '/calendar'
+      redirectTo: '/beer'
     });
 
 });

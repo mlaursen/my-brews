@@ -1,7 +1,13 @@
 
 angular.module('MyBeerApp')
-  .controller('BeerCtrl', function BeerCtrl($scope) {
+  .controller('BeerCtrl', function BeerCtrl($scope, BeerFactory) {
     'use strict';
 
-    $scope.title = 'Beer beer is good for your heart';
+    BeerFactory.getBeers()
+      .success(function(jsonData, statusCode) {
+        console.log('The request was successful!', statusCode, jsonData);
+
+        $scope.beers = jsonData;
+      });
+
   });

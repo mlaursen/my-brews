@@ -27,6 +27,6 @@ angular.module('MyBeerApp', [
     })*/
     .otherwise({
       redirectTo: '/calendar'
-    )};
+    });
 
 });

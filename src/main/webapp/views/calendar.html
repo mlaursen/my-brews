@@ -1,11 +1,11 @@
 <div class="calendar">
   <nav>
-    <button class="nav-left fa fa-chevron-left"></button>
+    <button class="nav-left fa fa-chevron-left" ng-click="previousMonth()"></button>
     <header>
       <span class="month-year">March 2015</span>
       <span class="info-text">Click on a date to view more info</span>
     </header>
-    <button class="nav-right fa fa-chevron-right"></button>
+    <button class="nav-right fa fa-chevron-right" ng-click="nextMonth()"></button>
   </nav>
   <div class="calendar-container">
     <header class="calendar-header">
@@ -19,10 +19,10 @@
     </header>
 
     <div class="calendar-body">
-      <div class="week">
+      <div class="week" ng-repeat="i in [0,1,2,3,4] track by $index">
         <div>
           <header>
-            <span class="date">1</span>
+            <span class="date">{{ $index * 7 + 1 }}</span>
             <span class="weekday">Sun</span>
           </header>
           <ul>
@@ -32,42 +32,42 @@
         </div>
 
         <div>
-          <span class="date">2</span>
+          <span class="date">{{ $index * 7 + 2 }}</span>
           <span class="weekday">Mon</span>
           <div class="schedule">
           </div>
         </div>
 
         <div>
-          <span class="date">3</span>
+          <span class="date">{{ $index * 7 + 3 }}</span>
           <span class="weekday">Tue</span>
           <div class="schedule">
           </div>
         </div>
 
         <div>
-          <span class="date">4</span>
+          <span class="date">{{ $index * 7 + 4 }}</span>
           <span class="weekday">Wed</span>
           <div class="schedule">
           </div>
         </div>
 
         <div>
-          <span class="date">5</span>
+          <span class="date">{{ $index * 7 + 5 }}</span>
           <span class="weekday">Thu</span>
           <div class="schedule">
           </div>
         </div>
 
         <div>
-          <span class="date">6</span>
+          <span class="date">{{ $index * 7 + 6 }}</span>
           <span class="weekday">Fri</span>
           <div class="schedule">
           </div>
         </div>
 
         <div>
-          <span class="date">7</span>
+          <span class="date">{{ $index * 7 + 7 }}</span>
           <span class="weekday">Sat</span>
           <div class="schedule">
           </div>

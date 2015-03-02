@@ -404,17 +404,21 @@ a.icon-link span:nth-child(2) {
 .calendar .calendar-container .calendar-body .week > div .date {
   font-weight: 800;
 }
-/* line 95, ../../sass/partials/_calendar.scss */
+/* line 94, ../../sass/partials/_calendar.scss */
+.calendar .calendar-container .calendar-body .week > div .date.different-month {
+  color: #747474;
+}
+/* line 99, ../../sass/partials/_calendar.scss */
 .calendar .calendar-container .calendar-body .week > div .weekday {
   visibility: hidden;
 }
-/* line 99, ../../sass/partials/_calendar.scss */
+/* line 103, ../../sass/partials/_calendar.scss */
 .calendar .calendar-container .calendar-body .week > div ul {
   list-style-type: none;
   margin: 0.5em 0 0;
   padding: 0;
 }
-/* line 104, ../../sass/partials/_calendar.scss */
+/* line 108, ../../sass/partials/_calendar.scss */
 .calendar .calendar-container .calendar-body .week > div ul li {
   font-size: 70%;
   list-style-type: none;

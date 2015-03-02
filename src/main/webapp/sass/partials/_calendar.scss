@@ -90,6 +90,10 @@
 
           .date {
             font-weight: 800;
+
+            &.different-month {
+              color: $light-gray;
+            }
           }
 
           .weekday {

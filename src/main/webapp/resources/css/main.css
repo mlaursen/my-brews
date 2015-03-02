@@ -265,11 +265,11 @@ input {
 /* line 12, ../../sass/partials/_inputs.scss */
 .search-box label.filter-by {
   position: absolute;
-  left: 0.3em;
+  left: 0.5em;
 }
 /* line 17, ../../sass/partials/_inputs.scss */
 .search-box input.search {
-  padding: 0.3em 1.5em;
+  padding: 0.3em 1.8em;
   border-radius: 35px;
   border-color: #0074d9;
   -webkit-transition: border-color ease-in-out 0.2s, box-shadow ease-in-out 0.2s;

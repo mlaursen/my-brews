@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="resources/3rdparty/font-awesome-4.3.0/css/font-awesome.min.css" type="text/javascript">
   </head>
   <body>
-    <div class="header">
+    <header class="header">
+        <!--
       <div class="wrapper">
         <div class="brand">
         </div>
@@ -15,6 +16,7 @@
           </div>
         </div>
       </div>
+      -->
 
       <div class="navbar">
         <ul class="navigation">
@@ -35,14 +37,14 @@
             <label for="search" class="filter-by">
               <span class="fa fa-search"></span>
             </label>
-            <input type="text" name="search" class="search" placeholder="belgian, wheat, stout" />
-            <button type="button" class="clear">
+            <input type="text" id="search-field" name="search-field" class="search" placeholder="belgian, wheat, stout" />
+            <button type="button" class="clear" data-target="search-field">
               <span class="fa fa-times"></span>
             </button>
           </div>
         </form>
       </div>
-    </div>
+    </header>
 
     <div class="content">
       <div ng-view>

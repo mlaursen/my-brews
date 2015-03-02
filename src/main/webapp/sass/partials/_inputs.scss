@@ -34,8 +34,10 @@ input {
     background: transparent;
     color: $light-gray;
     
-    &:hover {
+    &:hover,
+    &:focus {
       color: $dark-gray;
+      outline: none;
     }
   }
 }

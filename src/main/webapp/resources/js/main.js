@@ -7,3 +7,15 @@ $(window).scroll(function() {
     $(".content").removeClass("sticky");
   }
 });
+
+$(function() {
+  $(".clear").each(function() {
+    $(this).click(function() {
+      var target = $(this).data("target");
+      if(target != '') {
+        $('#' + target).val('');
+        $('#' + target).focus();
+      }
+    });
+  });
+});

@@ -1,0 +1,33 @@
+<h3>{{ beer.name }}</h3>
+<div class="gravity-abv">
+  {{ beer.og }} | {{ beer.fg}} - {{beer.abv}}
+</div>
+<div class"beer-info">
+  <span class="style">{{ beer.style }}</span>
+  <span class="color">{{ beer.color }}</span>
+  <div class="description">
+    {{ beer.description }}
+  </div>
+  
+  <div class="recipe">
+    <h4>Malts</h4>
+    <ul class="recipe-items" ng-repeat="malt in beer.recipe.malts">
+      <li>{{ malt.name }} {{ malt.amount }} {{ malt.unit }}</li>
+    </ul>
+
+    <h4>Grains</h4>
+    <ul class="recipe-items" ng-repeat="grain in beer.recipe.grains">
+      <li>{{ grain.name }} {{ grain.amount }} {{ graint.unit }}</li>
+    </ul>
+
+    <h4>Hops</h4>
+    <ul class="recipe-items" ng-repeat="hops in beer.recipe.hops">
+      <li>{{ hops.name }} {{ hops.amount }} {{ hops.unit }} ({{ hops.timeAdded }} min)</li>
+    </ul>
+
+    <h4>Yeast</h4>
+    <div class="yeast">
+      {{ beer.recipe.yeast.name }} - {{ beer.recipe.yeast.type }}
+    </div>
+  </div>
+</div>

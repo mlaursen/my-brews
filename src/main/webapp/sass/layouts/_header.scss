@@ -82,6 +82,7 @@ header.header {
     font-size: 1.5em;
     line-height: 2;
     padding: 0.3em 0;
+    z-index: 99999;
 
 
     @include transition(all 0.4s ease);
@@ -89,6 +90,7 @@ header.header {
     &.sticky {
       position: fixed;
       top: 0;
+      font-size: 1.2em;
     }
   }
 }

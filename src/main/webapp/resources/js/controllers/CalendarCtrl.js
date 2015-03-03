@@ -1,6 +1,6 @@
 
 angular.module('MyBeerApp')
-  .controller('CalendarCtrl', function CalendarCtrl($scope) {
+  .controller('CalendarCtrl', function CalendarCtrl($scope, CalendarFactory) {
     'use strict';
 
     

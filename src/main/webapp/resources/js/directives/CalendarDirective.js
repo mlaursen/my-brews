@@ -16,12 +16,6 @@ angular.module('MyBeerApp')
 
         _buildMonth(scope, startDate, scope.month);
 
-
-        scope.select = function(day) {
-          scope.current = day.date;
-          console.log('Selected ' + day);
-        }
-
         scope.next = function() {
           var next = scope.month.clone();
           _removeTime(next.month(next.month() + 1).date(1));

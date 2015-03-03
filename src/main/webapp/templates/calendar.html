@@ -20,7 +20,7 @@
 
     <div class="calendar-body">
       <div class="week" ng-repeat="week in weeks">
-        <div ng-repeat="day in week.days" ng-class="{ 'different-month': !day.isCurrentMonth, today: day.isToday }" ng-click="select(day)">
+        <div ng-repeat="day in week.days" ng-class="{ 'different-month': !day.isCurrentMonth, today: day.isToday }" >
           <header>
             <span class="date">{{ day.number }}</span>
             <span class="meta">{{ day.dayOfWeek }}</span>

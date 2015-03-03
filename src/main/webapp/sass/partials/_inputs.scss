@@ -32,11 +32,11 @@ input {
     right: 0.3em;
     border: none;
     background: transparent;
-    color: $light-gray;
+    color: $very-light-gray;
     
     &:hover,
     &:focus {
-      color: $dark-gray;
+      opacity: 0.6;
       outline: none;
     }
   }

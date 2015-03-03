@@ -10,23 +10,19 @@ angular.module('MyBeerApp', [
   $routeProvider
     .when('/calendar', {
       templateUrl: 'views/calendar.html',
-      controller: 'CalendarCtrl',
-      controllerAs: 'calendar'
+      controller: 'CalendarCtrl'
     })
     .when('/calendar/:date', {
       templateUrl: 'views/calendarDate.html',
-      controller: 'CalendarDateCtrl',
-      controllerAs: 'calendarDate'
+      controller: 'CalendarDateCtrl'
     })
     .when('/beer', {
       templateUrl: 'views/beers.html',
-      controller: 'BeerCtrl',
-      controllerAs: 'beers'
+      controller: 'BeerCtrl'
     })
     .when('/beer/:id', {
       templateUrl: 'views/beer.html',
-      controller: 'BeerCtrl',
-      controllerAs: 'beer'
+      controller: 'BeerCtrl'
     })
     .otherwise({
       redirectTo: '/beer'

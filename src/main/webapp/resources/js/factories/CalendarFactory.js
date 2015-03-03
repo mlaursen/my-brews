@@ -2,13 +2,13 @@ angular.module('MyBeerApp')
   .factory('CalendarFactory', function CalendarFactory($http) {
     var exports = {};
 
-    exports.getDay = function(date) {
+    exports.getEvents = function() {
       return $http.get('json/events.json')
         .success(function(data) {
-          console.log('Success!');
+          console.log('Success!', data);
         })
         .error(function(data) {
-          console.log('There was an error.', data);
+          console.log('There was an error..', data);
         });
     };
 

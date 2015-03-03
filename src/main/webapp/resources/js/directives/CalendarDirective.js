@@ -4,7 +4,8 @@ angular.module('MyBeerApp')
       restrict: 'E',
       templateUrl: 'templates/calendar.html',
       scope: {
-        current: '='
+        current: '=current',
+        events: '=events'
       },
       link: function(scope) {
         scope.current = _removeTime(scope.current || moment());
@@ -15,6 +16,11 @@ angular.module('MyBeerApp')
         _removeTime(startDate.day(0));
 
         _buildMonth(scope, startDate, scope.month);
+
+        /* re-build the month when the events json get request finishes.. */
+        scope.$watch('events', function(newValue, oldValue) {
+          _buildMonth(scope, startDate, scope.month);
+        })
 
         scope.next = function() {
           var next = scope.month.clone();
@@ -50,7 +56,7 @@ angular.module('MyBeerApp')
           count = 0;
       while(!done) {
         scope.weeks.push({ 
-          days: _buildWeek(date.clone(), month)
+          days: _buildWeek(scope, date.clone(), month)
         });
 
         date.add(1, 'w');
@@ -59,7 +65,7 @@ angular.module('MyBeerApp')
       }
     }
 
-    function _buildWeek(date, month) {
+    function _buildWeek(scope, date, month) {
       var days = [];
       for(var i = 0; i < 7; i++) {
         days.push({
@@ -67,12 +73,21 @@ angular.module('MyBeerApp')
           number: date.date(),
           isCurrentMonth: date.month() === month.month(),
           isToday: date.isSame(new Date(), 'day'),
-          date: date
+          date: date,
+          events: _getEvents(scope, date)
         });
         
         date = date.clone();
         date.add(1, 'd');
       }
       return days;
+    }
+
+    function _getEvents(scope, date) {
+      var events = [];
+      if(date.isSame(new Date(), 'day')) {
+        events = scope.events;
+      }
+      return events;
     }
   });

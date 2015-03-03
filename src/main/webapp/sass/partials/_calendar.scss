@@ -83,21 +83,24 @@
           flex: 1;
           padding: 0.5em;
 
-          &:hover {
-            background: $ghost-white;
-            cursor: pointer;
-          }
-
-          .date {
-            font-weight: 800;
-
-            &.different-month {
+          &.different-month {
+            .date {
               color: $light-gray;
             }
           }
 
-          .weekday {
-            visibility: hidden;
+          &.today {
+            background: $ghost-white;
+          }
+
+          &:hover {
+            background: $ghost-white;
+            cursor: pointer;
+            box-shadow: 2px 2px 2px $light-gray;
+          }
+
+          .date {
+            font-weight: 800;
           }
 
           ul {

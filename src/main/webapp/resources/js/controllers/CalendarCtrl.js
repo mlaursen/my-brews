@@ -4,5 +4,5 @@ angular.module('MyBeerApp')
     'use strict';
 
     
-    $scope.current = moment();
+    $scope.currentDate = moment();
   });

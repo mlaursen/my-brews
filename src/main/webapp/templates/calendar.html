@@ -2,13 +2,13 @@
   <nav>
     <button class="nav-left fa fa-chevron-left" ng-click="previous()"></button>
     <header>
-      <span class="month-year">March 2015</span>
+      <span class="month-year">{{ month.format('MMMM YYYY') }}</span>
       <span class="info-text">Click on a date to view more info</span>
     </header>
     <button class="nav-right fa fa-chevron-right" ng-click="next()"></button>
   </nav>
   <div class="calendar-container">
-    <header class="calendar-header">
+    <header>
       <div>Sun</div>
       <div>Mon</div>
       <div>Tue</div>
@@ -19,58 +19,15 @@
     </header>
 
     <div class="calendar-body">
-      <div class="week" ng-repeat="i in [0,0,0,0,0] track by $index">
-        <div>
+      <div class="week" ng-repeat="week in weeks">
+        <div ng-repeat="day in week.days" ng-class="{ 'different-month': !day.isCurrentMonth, today: day.isToday }" ng-click="select(day)">
           <header>
-            <span class="date">{{ $index * 7 + 1 }}</span>
-            <span class="weekday">Sun</span>
+            <span class="date">{{ day.number }}</span>
+            <span class="meta">{{ day.dayOfWeek }}</span>
           </header>
           <ul>
-            <li>Oat Of This World Stout</li>
-            <li>Tru Hefe</li>
+            <li ng-repeat="event in day.events">{{ event }}</li>
           </ul>
-        </div>
-
-        <div>
-          <span class="date">{{ $index * 7 + 2 }}</span>
-          <span class="weekday">Mon</span>
-          <div class="schedule">
-          </div>
-        </div>
-
-        <div>
-          <span class="date">{{ $index * 7 + 3 }}</span>
-          <span class="weekday">Tue</span>
-          <div class="schedule">
-          </div>
-        </div>
-
-        <div>
-          <span class="date">{{ $index * 7 + 4 }}</span>
-          <span class="weekday">Wed</span>
-          <div class="schedule">
-          </div>
-        </div>
-
-        <div>
-          <span class="date">{{ $index * 7 + 5 }}</span>
-          <span class="weekday">Thu</span>
-          <div class="schedule">
-          </div>
-        </div>
-
-        <div>
-          <span class="date">{{ $index * 7 + 6 }}</span>
-          <span class="weekday">Fri</span>
-          <div class="schedule">
-          </div>
-        </div>
-
-        <div>
-          <span class="date">{{ $index * 7 + 7 }}</span>
-          <span class="weekday">Sat</span>
-          <div class="schedule">
-          </div>
         </div>
       </div>
     </div>

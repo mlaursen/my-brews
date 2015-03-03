@@ -395,31 +395,37 @@ a.icon-link span:nth-child(2) {
   flex: 1;
   padding: 0.5em;
 }
-/* line 86, ../../sass/partials/_calendar.scss */
+/* line 87, ../../sass/partials/_calendar.scss */
+.calendar .calendar-container .calendar-body .week > div.different-month .date {
+  color: #747474;
+}
+/* line 92, ../../sass/partials/_calendar.scss */
+.calendar .calendar-container .calendar-body .week > div.today {
+  background: ghostwhite;
+}
+/* line 96, ../../sass/partials/_calendar.scss */
 .calendar .calendar-container .calendar-body .week > div:hover {
   background: ghostwhite;
   cursor: pointer;
+  box-shadow: 2px 2px 2px #747474;
 }
-/* line 91, ../../sass/partials/_calendar.scss */
+/* line 102, ../../sass/partials/_calendar.scss */
 .calendar .calendar-container .calendar-body .week > div .date {
   font-weight: 800;
 }
-/* line 94, ../../sass/partials/_calendar.scss */
-.calendar .calendar-container .calendar-body .week > div .date.different-month {
-  color: #747474;
-}
-/* line 99, ../../sass/partials/_calendar.scss */
-.calendar .calendar-container .calendar-body .week > div .weekday {
-  visibility: hidden;
-}
-/* line 103, ../../sass/partials/_calendar.scss */
+/* line 106, ../../sass/partials/_calendar.scss */
 .calendar .calendar-container .calendar-body .week > div ul {
   list-style-type: none;
   margin: 0.5em 0 0;
   padding: 0;
 }
-/* line 108, ../../sass/partials/_calendar.scss */
+/* line 111, ../../sass/partials/_calendar.scss */
 .calendar .calendar-container .calendar-body .week > div ul li {
   font-size: 70%;
   list-style-type: none;
+}
+
+/* line 11, ../../sass/main.scss */
+.meta {
+  visibility: hidden;
 }

@@ -1,2 +1,6 @@
 css/
 .sass-cache/
+target/
+.project
+.classpath
+.settings/

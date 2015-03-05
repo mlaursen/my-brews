@@ -33,28 +33,71 @@ CREATE TABLE Event_Type
 );
 
 CREATE TABLE Beer_Color
-( name TEXT
-, CONSTRAINT pk_Beer_Color_Name PRIMARY KEY(name)
+( id   SERIAL
+, name TEXT
+, CONSTRAINT pk_Beer_Color_Id PRIMARY KEY(id)
 );
 
 CREATE TABLE Beer_Style
-( name TEXT
-, CONSTRAINT pk_Beer_Style_Name PRIMARY KEY(name)
+( id   SERIAL
+, name TEXT
+, CONSTRAINT pk_Beer_Style_Id PRIMARY KEY(id)
 );
+
+CREATE TABLE Regional_Style
+( id   SERIAL
+, name TEXT
+, CONSTRAINT pk_Regional_Style_Id PRIMARY KEY(id)
+);
+
+
+-- Inserting lookups
+INSERT INTO Beer_Color(name)
+VALUES ('Light')
+     , ('Amber')
+     , ('Dark')
+     , ('Golden');
+
+INSERT INTO Beer_Style(name)
+VALUES ('Amber Ale')
+     , ('American Pale Ale/Cream Ale')
+     , ('British Pale Ale/Bitter')
+     , ('British/American Strong Ale')
+     , ('Brown Ale')
+     , ('Dark/Amber Lager')
+     , ('German Ale')
+     , ('Hybrid Beer')
+     , ('IPA')
+     , ('Irish and Scottish Ale')
+     , ('Pale Lager')
+     , ('Sour')
+     , ('Spice or Fruit Beer')
+     , ('Stout/Porter')
+     , ('Trappist/Belgian Ale')
+     , ('Wheat Beer');
+
+INSERT INTO Regional_Style(name)
+VALUES ('Belgian')
+     , ('British')
+     , ('German/Czech/Continental')
+     , ('USA');
 
 ---------------------------------------------------
 -- Table Data
 CREATE TABLE Beer
-( id               SERIAL
-, name             TEXT
-, style            TEXT
-, color            TEXT
-, description      TEXT
+( id                SERIAL
+, name              TEXT
+, beer_style_id     INTEGER
+, regional_style_id INTEGER
+, beer_color_id     INTEGER
+, description       TEXT
 , CONSTRAINT pk_Beer_Id PRIMARY KEY(id)
 , CONSTRAINT fk_Beer_Beer_Style
-    FOREIGN KEY(style) REFERENCES Beer_Style(name)
+    FOREIGN KEY(beer_style_id) REFERENCES Beer_Style(id)
+, CONSTRAINT fk_Beer_Regional_Style
+    FOREIGN KEY(regional_style_id) REFERENCES Regional_Style(id)
 , CONSTRAINT fk_Beer_Beer_Color
-    FOREIGN KEY(color) REFERENCES Beer_Color(name)
+    FOREIGN KEY(beer_color_id) REFERENCES Beer_Color(id)
 );
 
 CREATE TABLE Recipe

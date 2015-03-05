@@ -9,7 +9,6 @@ package com.github.mlaursen.mybrews.constants;
  *
  */
 public enum WeightUnit {
-
   LBS,
   OZ;
 }

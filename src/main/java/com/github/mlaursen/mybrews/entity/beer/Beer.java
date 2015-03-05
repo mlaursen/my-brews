@@ -23,13 +23,13 @@ import com.github.mlaursen.mybrews.entity.lookup.RegionalStyle;
 public class Beer extends GeneratedIdNamedEntity {
 
   @OneToOne
-  @JoinColumn
+  @JoinColumn(name = "beer_style_id")
   private BeerStyle beerStyle;
   @OneToOne
-  @JoinColumn
+  @JoinColumn(name = "regional_style_id")
   private RegionalStyle regionalStyle;
   @OneToOne
-  @JoinColumn
+  @JoinColumn(name = "beer_color_id")
   private BeerColor beerColor;
   private String description;
 

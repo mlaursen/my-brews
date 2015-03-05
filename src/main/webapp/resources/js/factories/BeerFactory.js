@@ -3,7 +3,7 @@ angular.module('MyBeerApp')
     var exports = {};
 
     exports.getBeers = function() {
-      return $http.get('json/beers.json')
+      return $http.get('http://ubuntu.mathtabolism.com:8080/my-brews/api/beer')
         .success(function(data) {
           console.log('Success!');
         })

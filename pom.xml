@@ -15,7 +15,7 @@
     <database.server>localhost</database.server>
     <database.name>mybrews</database.name>
     <database.password>welcome1</database.password>
-    <database.user>mybrews</database.user>
+    <database.user>postgres</database.user>
   </properties>
 
   <repositories>

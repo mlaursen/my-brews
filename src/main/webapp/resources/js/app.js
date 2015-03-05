@@ -1,10 +1,7 @@
 angular.module('MyBeerApp', [
     'ngRoute',
     'ngSanitize'
-]).constant('REST_CALL', {
-  'BASE': '/api',
-  'BEER': '/beer'
-}).config(function ($routeProvider) {
+]).config(function ($routeProvider) {
   'use strict';
 
   $routeProvider

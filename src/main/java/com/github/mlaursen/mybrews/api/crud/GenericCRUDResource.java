@@ -4,15 +4,14 @@
 package com.github.mlaursen.mybrews.api.crud;
 
 import javax.ejb.EJBException;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import org.jboss.logging.Logger;
 
 import com.github.mlaursen.mybrews.entity.GeneratedIdEntity;
-import com.github.mlaursen.mybrews.util.MyBrewsDB;
 import com.github.mlaursen.mybrews.util.ResponseBuilder;
 
 /**
@@ -23,8 +22,7 @@ import com.github.mlaursen.mybrews.util.ResponseBuilder;
 public abstract class GenericCRUDResource<E extends GeneratedIdEntity> implements CreateableResource<E>, RetrievableResource<E>, UpdateableResource<E>, DeleteableResource<E> {
   private static Logger logger = Logger.getLogger(GenericCRUDResource.class);
   
-  @Inject
-  @MyBrewsDB
+  @PersistenceContext(unitName = "mybrews")
   protected EntityManager em;
   
   private Class<E> entityClass;

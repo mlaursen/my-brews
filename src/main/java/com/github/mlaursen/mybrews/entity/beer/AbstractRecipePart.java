@@ -14,7 +14,7 @@ import com.github.mlaursen.mybrews.entity.GeneratedIdEntity;
  *
  */
 @MappedSuperclass
-public class AbstractRecipePart extends GeneratedIdEntity {
+public abstract class AbstractRecipePart extends GeneratedIdEntity {
 
   private String name;
   private Double amount;

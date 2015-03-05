@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public class GeneratedIdEntity {
+public abstract class GeneratedIdEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

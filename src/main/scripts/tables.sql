@@ -126,10 +126,11 @@ CREATE TABLE Brewed_Beer
 );
 
 CREATE TABLE Event
-( brewed_beer_id INTEGER
+( id             SERIAL
+, brewed_beer_id INTEGER
 , event_type_id  INTEGER
 , event_date     DATE
-, CONSTRAINT pk_Event PRIMARY KEY(brewed_beer_id, event_type_id)
+, CONSTRAINT pk_Event_Id PRIMARY KEY(id)
 , CONSTRAINT fk_Event_Brewed_Beer_Id
     FOREIGN KEY(brewed_beer_id) REFERENCES Brewed_Beer(id)
 , CONSTRAINT fk_Event_Event_Type_Id
@@ -137,11 +138,12 @@ CREATE TABLE Event
 );
 
 CREATE TABLE Recipe_Malt
-( recipe_id INTEGER
+( id        SERIAL
+, recipe_id INTEGER
 , malt_id   INTEGER
 , amount    DECIMAL
 , unit      TEXT
-, CONSTRAINT pk_Recipe_Malt PRIMARY KEY(recipe_id, malt_id)
+, CONSTRAINT pk_Recipe_Malt_Id PRIMARY KEY(id)
 , CONSTRAINT fk_Recipe_Malt_Recipe_Id
     FOREIGN KEY(recipe_id) REFERENCES Recipe(id)
 , CONSTRAINT fk_Recipe_Malt_Malt_Id
@@ -149,11 +151,12 @@ CREATE TABLE Recipe_Malt
 );
 
 CREATE TABLE Recipe_Grain
-( recipe_id INTEGER
+( id        SERIAL
+, recipe_id INTEGER
 , grain_id  INTEGER
 , amount    DECIMAL
 , unit      TEXT
-, CONSTRAINT pk_Recipe_Grain PRIMARY KEY(recipe_id, grain_id)
+, CONSTRAINT pk_Recipe_Grain_Id PRIMARY KEY(id)
 , CONSTRAINT fk_Recipe_Hops_Recipe_Id
     FOREIGN KEY(recipe_id) REFERENCES Recipe(id)
 , CONSTRAINT fk_Recipe_Hops_Grain_Id
@@ -161,12 +164,13 @@ CREATE TABLE Recipe_Grain
 );
 
 CREATE TABLE Recipe_Hops
-( recipe_id INTEGER
+( id        SERIAL
+, recipe_id INTEGER
 , hops_id   INTEGER
 , amount    DECIMAL
 , unit      TEXT
 , boil_time INTEGER
-, CONSTRAINT pk_Recipe_Hops PRIMARY KEY(recipe_id, hops_id)
+, CONSTRAINT pk_Recipe_Hops_Id PRIMARY KEY(id)
 , CONSTRAINT fk_Recipe_Hops_Recipe_Id
     FOREIGN KEY(recipe_id) REFERENCES Recipe(id)
 , CONSTRAINT fk_Recipe_Hops_Hops_Id

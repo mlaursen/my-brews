@@ -3,8 +3,12 @@
  */
 package com.github.mlaursen.mybrews.entity.recipe;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -23,6 +27,7 @@ public class Recipe extends GeneratedIdEntity {
   @OneToOne
   @JoinColumn(name = "yeast_id")
   private Yeast yeast;
+  
   private Integer boilTime;
 
   /**
@@ -52,4 +57,5 @@ public class Recipe extends GeneratedIdEntity {
   public void setBoilTime(Integer boilTime) {
     this.boilTime = boilTime;
   }
+  
 }

@@ -3,6 +3,8 @@
  */
 package com.github.mlaursen.mybrews.api.crud;
 
+import java.util.List;
+
 import javax.ejb.EJBException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,7 +21,7 @@ import com.github.mlaursen.mybrews.util.ResponseBuilder;
  * @author mlaursen
  *
  */
-public abstract class GenericCRUDResource<E extends GeneratedIdEntity> implements CreateableResource<E>, RetrievableResource<E>, UpdateableResource<E>, DeleteableResource<E> {
+public abstract class GenericCRUDResource<E extends GeneratedIdEntity> implements CreateableResource<E>, RetrievableResource<E>, UpdateableResource<E>, DeleteableResource<E>, AllRetrievableResource<E> {
   private static Logger logger = Logger.getLogger(GenericCRUDResource.class);
   
   @PersistenceContext(unitName = "mybrews")
@@ -88,6 +90,11 @@ public abstract class GenericCRUDResource<E extends GeneratedIdEntity> implement
     }
     
     return ResponseBuilder.buildResponse(status, entity);
+  }
+  
+  @Override
+  public List<E> retrieveAll() {
+    return em.createQuery("SELECT ec FROM " + entityClass.getSimpleName() + " ec", entityClass).getResultList();
   }
 
   

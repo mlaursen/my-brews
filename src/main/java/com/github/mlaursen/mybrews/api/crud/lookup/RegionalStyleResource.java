@@ -7,7 +7,7 @@ import javax.ejb.Stateless;
 import javax.ws.rs.Path;
 
 import com.github.mlaursen.mybrews.api.crud.GenericCRUDResource;
-import com.github.mlaursen.mybrews.entity.lookup.BeerStyle;
+import com.github.mlaursen.mybrews.entity.lookup.RegionalStyle;
 
 /**
  *
@@ -15,11 +15,10 @@ import com.github.mlaursen.mybrews.entity.lookup.BeerStyle;
  *
  */
 @Stateless
-@Path("/beerstyle")
-public class BeerStyleResource extends GenericCRUDResource<BeerStyle> {
-
-  public BeerStyleResource() {
-    super(BeerStyle.class);
+@Path("/regionalstyle")
+public class RegionalStyleResource extends GenericCRUDResource<RegionalStyle> {
+  public RegionalStyleResource() {
+    super(RegionalStyle.class);
   }
 
 }

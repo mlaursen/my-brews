@@ -3,8 +3,9 @@
  */
 package com.github.mlaursen.mybrews.api.crud;
 
+import java.util.List;
+
 import javax.ws.rs.GET;
-import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -16,13 +17,18 @@ import com.github.mlaursen.mybrews.entity.GeneratedIdEntity;
  *
  */
 public interface AllRetrievableResource<E extends GeneratedIdEntity> {
-  
+
   /**
+   * Gets all of the specified entity.
    * 
-   * @return a List of entities
+   * <p>The url should be as follows:
+   * <pre>
+   *    /api/{entityName}
+   * </pre>
+   * 
+   * @return a List of the Entity
    */
   @GET
-  @Path("/retrieveAll")
   @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-  java.util.List<E> retrieveAll();
+  List<E> retrieveAll();
 }

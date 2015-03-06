@@ -1,0 +1,12 @@
+#!/bin/bash
+curl -H "Content-Type: application/json" \
+     -d '{"name": "Gold", "type": "MALT_SYRUP"}' \
+          localhost:8080/my-brews/api/malt
+
+curl -H "Content-Type: application/json" \
+     -d '{"name": "Gold", "type": "DRY_MALT_EXTRACT"}' \
+          localhost:8080/my-brews/api/malt
+
+curl -H "Content-Type: application/json" \
+     -d '{"name": "Honey", "type": "OTHER"}' \
+          localhost:8080/my-brews/api/malt

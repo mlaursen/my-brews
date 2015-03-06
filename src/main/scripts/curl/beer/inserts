@@ -1,0 +1,9 @@
+#!/bin/bash
+curl -H "Content-Type: application/json" \
+     -d '{ "name": "White House Honey Ale"
+         , "beerStyle": {"id": "8"}
+         , "regionalStyle": {"id": "4"}
+         , "beerColor": {"id": "2"}
+         , "description": "Ale to the Chief! This original recipe, first customized and brewed by the White House kitchen staff, is now available by popular demand as a Northern Brewer kit. Built on a big foundation of malt with strong tones of biscuit and toffee, the Honey Ale plays up the fruity, caramel aspects of English malt and yeast. But much like the Founding Fathers would have spiced up traditional style ales with homegrown ingredients, a late addition of pure honey adds a revolutionary twist. Declare your independence from mediocre beers with this historic White House Homebrew!"
+         }' \
+          localhost:8080/my-brews/api/beer

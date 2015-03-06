@@ -1,0 +1,9 @@
+#!/bin/bash
+curl -H "Content-Type: application/json" \
+     -d '{"name": "East Kent Goldings"}' \
+          localhost:8080/my-brews/api/hops
+
+curl -H "Content-Type: application/json" \
+     -d '{"name": "UK Fuggles"}' \
+          localhost:8080/my-brews/api/hops
+

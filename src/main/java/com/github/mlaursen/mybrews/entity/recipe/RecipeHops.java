@@ -17,13 +17,11 @@ import com.github.mlaursen.mybrews.entity.lookup.Hops;
  */
 @Entity
 @XmlRootElement
-public class RecipeHops extends RecipePart {
+public class RecipeHops extends RecipeBoilTimePart {
   
   @OneToOne
   @JoinColumn(name = "hops_id")
   private Hops hops;
-  
-  private Integer boilTime;
 
   /**
    * @return the malt
@@ -37,19 +35,5 @@ public class RecipeHops extends RecipePart {
    */
   public void setHops(Hops hops) {
     this.hops = hops;
-  }
-
-  /**
-   * @return the boilTime
-   */
-  public Integer getBoilTime() {
-    return boilTime;
-  }
-
-  /**
-   * @param boilTime the boilTime to set
-   */
-  public void setBoilTime(Integer boilTime) {
-    this.boilTime = boilTime;
   }
 }

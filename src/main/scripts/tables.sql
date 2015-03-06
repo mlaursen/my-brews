@@ -10,6 +10,7 @@ CREATE TABLE Yeast
 CREATE TABLE Malt
 ( id     SERIAL
 , name   TEXT
+, type   TEXT
 , CONSTRAINT pk_Malt_Id PRIMARY KEY(id)
 );
 
@@ -143,6 +144,7 @@ CREATE TABLE Recipe_Malt
 , malt_id   INTEGER
 , amount    DECIMAL
 , unit      TEXT
+, boil_time INTEGER
 , CONSTRAINT pk_Recipe_Malt_Id PRIMARY KEY(id)
 , CONSTRAINT fk_Recipe_Malt_Recipe_Id
     FOREIGN KEY(recipe_id) REFERENCES Recipe(id)

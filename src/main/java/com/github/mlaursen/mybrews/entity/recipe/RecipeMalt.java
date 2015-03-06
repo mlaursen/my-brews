@@ -17,7 +17,7 @@ import com.github.mlaursen.mybrews.entity.lookup.Malt;
  */
 @Entity
 @XmlRootElement
-public class RecipeMalt extends RecipePart {
+public class RecipeMalt extends RecipeBoilTimePart {
   
   @OneToOne
   @JoinColumn(name = "malt_id")

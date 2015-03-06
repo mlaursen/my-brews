@@ -6,6 +6,7 @@ package com.github.mlaursen.mybrews.entity.recipe;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
 
 import com.github.mlaursen.mybrews.constants.WeightUnit;
@@ -16,7 +17,8 @@ import com.github.mlaursen.mybrews.entity.GeneratedIdEntity;
  * @author mlaursen
  *
  */
-public class RecipePart extends GeneratedIdEntity {
+@MappedSuperclass
+public abstract class RecipePart extends GeneratedIdEntity {
 
   @OneToOne
   @JoinColumn(name = "recipe_id")

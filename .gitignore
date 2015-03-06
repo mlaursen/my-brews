@@ -1,4 +1,4 @@
-css/
+src/main/webapp/resources/css/
 .sass-cache/
 target/
 .project

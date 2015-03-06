@@ -4,7 +4,7 @@
 <h3>Technologies Used</h3>
 <h5>Front End</h5>
 <ul>
-<li>SASS - <a href="http://sass-lang.com/">Syntactically Awesome Style Sheets</a>
+<li>SASS with <a href="http://compass-style.org">Compass</a>- <a href="http://sass-lang.com/">Syntactically Awesome Style Sheets</a>
 <li>AngularJS
 <li>FontAwesome - <a href="http://fortawesome.github.io/Font-Awesome/icons/">Neat Font Library</a>
 <li>jQuery
@@ -18,14 +18,29 @@
 </ul>
 
 <h3>Project Requirements</h3>
-<p>All that is required to run this project is a wildfly server (preferably 8.2.0) and a running postgres database. The default database configuration is:
+<p>All that is required to run this project is a wildfly server (preferably 8.2.0), a running postgres database, ruby, sass and compass installed. The default database configuration is:
 <pre>
   Database Server   = localhost
   Database Name     = mybrews
   Database Password = welcome1
   Database Username = mybrews
 </pre>
-<p>These can be changed in the <code>pom.xml</code></p>
+<p>These can be changed in the <code>pom.xml</code>
+<h4>Install SASS and Compass on Windows</h4>
+<p>This part is kind of a pain.. The rubygems SSL certificate has expired.. So a fix needs to be done.
+<a href="https://gist.github.com/luislavena/f064211759ee0f806c88">SSL upgrades on rubygems.org and RubyInstaller versions</a>
+<p>Once you have Ruby and the rubygems fixed, you can install sass and compass with the following command:<pre>
+gem install sass compass
+</pre> (Linux might require <code>sudo</code>).
+
+<p>Finally, compile the css files with<pre>
+compass compile
+</pre>
+in the my-brews home directory. The command will generate the files into <code>src/main/webapp/resources/css</code>. If you are doing a lot of css changes in sass, run the following command in the my-brews home directory:<pre>
+compass watch
+</pre>
+This will auto-compile any changes to <code>.scss</code> files any time one gets modified. Neat stuff! The current compass configuration shows the line numbers of how the file got generated and does not minify the css. View <code>config.rb</code> for the compass settings.
+
 
 <h3>Running / Deploying</h3>
 <p>For first time deployment, run:<pre>

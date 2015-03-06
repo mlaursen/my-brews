@@ -58,7 +58,9 @@ curl -iX GET localhost:8080/my-brews/api/beercolor/1
 <p>Any entity can be created by sending a <code>POST</code> request to <code>/api/{entityName}</code>. I know, I know, no security :) That will change later..
 <p>An example curl call:
 <pre>
-curl -H "Content-Type: application/json" -d '{"name": "Wyeast #1332 Northwest Ale Yeast", "type": "LIQUID"}' localhost:8080/my-brews/api/yeast
+curl -H "Content-Type: application/json" \
+     -d '{"name": "Wyeast #1332 Northwest Ale Yeast", "type": "LIQUID"}' \
+     localhost:8080/my-brews/api/yeast
 </pre>
 <p>This will create a new yeast with the name and given Yeast Type. We can use our fancy get request and view the new yeast we made. <pre>
 curl -iX GET localhost:8080/my-brews/api/yeast/1
@@ -68,7 +70,9 @@ curl -iX GET localhost:8080/my-brews/api/yeast/1
 <p>An entity can be updated by sending a <code>PUT</code> request to <code>/api/{entityName}</code> (This might get updated later to pass in the id as well.. ex: <code>/api/{entityName}/{id}</code>).
 
 <p>An example update of the yeast we just created:<pre>
-curl -H "Content-Type: application/json" -X PUT -d '{"id": "1", "name": "Wyeast #1332 Northwest Ale Yeast", "type": "DRY"}' localhost:8080/my-brews/api/yeast
+curl -H "Content-Type: application/json" \
+     -X PUT -d '{"id": "1", "name": "Wyeast #1332 Northwest Ale Yeast", "type": "DRY"}' \
+     localhost:8080/my-brews/api/yeast
 </pre>
 <p>This updates the yeast we just created to have a DRY yeast type. Super exciting!
 

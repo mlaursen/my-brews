@@ -6,22 +6,28 @@ package com.github.mlaursen.mybrews.entity.recipe;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.OneToOne;
+import javax.xml.bind.annotation.XmlTransient;
 
 import com.github.mlaursen.mybrews.constants.WeightUnit;
 import com.github.mlaursen.mybrews.entity.GeneratedIdEntity;
 
 /**
- *
+ * Abstract class for any class that is considered a Recipe part. This class defines the mapping
+ * between the Recipe and the part and includes the amount and unit for the part.
+ * 
+ * 
  * @author mlaursen
- *
+ * @see GeneratedIdEntity
+ * @see Recipe
  */
 @MappedSuperclass
 public abstract class RecipePart extends GeneratedIdEntity {
 
-  @OneToOne
+  @ManyToOne
   @JoinColumn(name = "recipe_id")
+  @XmlTransient
   private Recipe recipe;
 
   private Double amount;

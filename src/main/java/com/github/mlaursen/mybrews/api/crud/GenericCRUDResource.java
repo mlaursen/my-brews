@@ -17,11 +17,22 @@ import com.github.mlaursen.mybrews.entity.GeneratedIdEntity;
 import com.github.mlaursen.mybrews.util.ResponseBuilder;
 
 /**
- *
+ * A neat little Generic CRUD Resource used for a lot of the normal CRUD requests. Each Resource that wants this logic
+ * just needs to extend this class and create a public constructor with the entity they manage in it. Right now, the
+ * Generic CRUD Resource can only work on entities that are a subclass of {@link GeneratedIdEntity} because
+ * I am searching by <code>id</code>. It would be helpful to change it to PK and search by PK if needed.
+ * 
+ * <p>An example:<pre>
+ *   public YeastResource() {
+ *     super(Yeast.class);
+ *   }
+ * </pre>
+ * 
+ * <p>This Generic CRUD Resource also defines a {@link #findById(Long) findById} method to be used in subclasses.
+ * 
  * @author mlaursen
- *
  */
-public abstract class GenericCRUDResource<E extends GeneratedIdEntity> implements CreateableResource<E>, RetrievableResource<E>, UpdateableResource<E>, DeleteableResource<E>, AllRetrievableResource<E> {
+public abstract class GenericCRUDResource<E extends GeneratedIdEntity> implements CreateableResource<E>, RetrievableResource, UpdateableResource<E>, DeleteableResource<E>, AllRetrievableResource<E> {
   private static Logger logger = Logger.getLogger(GenericCRUDResource.class);
   
   @PersistenceContext(unitName = "mybrews")

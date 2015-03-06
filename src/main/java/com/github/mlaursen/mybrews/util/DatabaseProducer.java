@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
- *
+ * Should produce the entity manager from the persistence context.
  * @author mlaursen
  *
  */

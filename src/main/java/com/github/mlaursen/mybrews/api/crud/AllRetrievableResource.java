@@ -12,9 +12,10 @@ import javax.ws.rs.core.MediaType;
 import com.github.mlaursen.mybrews.entity.GeneratedIdEntity;
 
 /**
- *
+ * An interface for declaring that an entity can be have all results returned.
+ * 
  * @author mlaursen
- *
+ * @see GenericCRUDResource
  */
 public interface AllRetrievableResource<E extends GeneratedIdEntity> {
 

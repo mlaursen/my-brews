@@ -17,7 +17,9 @@ import static java.lang.annotation.ElementType.PARAMETER;;
 
 
 /**
- *
+ * Annotation for helping inject the EntityManager with the database producer. I don't have this working
+ * at the moment.
+ * 
  * @author mlaursen
  *
  */

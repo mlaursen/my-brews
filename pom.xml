@@ -15,7 +15,7 @@
     <database.server>localhost</database.server>
     <database.name>mybrews</database.name>
     <database.password>welcome1</database.password>
-    <database.user>postgres</database.user>
+    <database.user>mybrews</database.user>
   </properties>
 
   <repositories>
@@ -198,4 +198,17 @@
       </plugin>
     </plugins>
   </build>
+  
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.10.1</version>
+        <configuration>
+          <show>public</show>
+        </configuration>
+      </plugin>
+    </plugins>
+  </reporting>
 </project>

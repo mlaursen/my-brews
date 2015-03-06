@@ -13,7 +13,8 @@ import javax.ws.rs.core.Response;
 import com.github.mlaursen.mybrews.entity.GeneratedIdEntity;
 
 /**
- *
+ * Defines the standards for a Deleteable resource.
+ * 
  * @author mlaursen
  *
  */

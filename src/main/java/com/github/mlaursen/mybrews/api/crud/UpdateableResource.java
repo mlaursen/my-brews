@@ -12,7 +12,8 @@ import javax.ws.rs.core.Response;
 import com.github.mlaursen.mybrews.entity.GeneratedIdEntity;
 
 /**
- *
+ * Defines the standards for an entity that can be updated.
+ * 
  * @author mlaursen
  *
  */
@@ -21,17 +22,16 @@ public interface UpdateableResource<E extends GeneratedIdEntity> {
   /**
    * Attempts to update an entity by entity id and JSON data. If the entity 
    * was successfully updated, {@link HttpServletResponse#SC_CREATED} should be
-   * returned. Otherwise {@link HttpServletResponse#SC_BAD_REQUEST} will
-   * be returned.
+   * returned along with the updated entity as json. Otherwise {@link HttpServletResponse#SC_BAD_REQUEST}
+   * will be returned.
    * 
    * <p>The url should look as follows:
-   * <code><pre>
+   * <pre>
    *    /api/{entityName}/update
-   * </pre></code>
+   * </pre>
    * 
    * @param entity the entity to update
-   * @param entityId the entity's id
-   * @return a HttpServletResponse representing the result of the update action
+   * @return a Response representing the result of the update action
    */
   @PUT
   @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})

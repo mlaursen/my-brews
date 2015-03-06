@@ -12,7 +12,8 @@ import javax.ws.rs.core.Response;
 import com.github.mlaursen.mybrews.entity.GeneratedIdEntity;
 
 /**
- *
+ * An interface declaring the standard for saying that an Entity can be created.
+ * 
  * @author mlaursen
  *
  */
@@ -20,15 +21,16 @@ public interface CreateableResource<E extends GeneratedIdEntity> {
 
   /**
    * Attempts to create an entity from JSON. If there was a successful creation,
-   * the {@link HttpServletResponse#SC_CREATED} should be returned. Otherwise,
-   * {@link HttpServletResponse#SC_BAD_REQUEST} will be returned.
+   * the {@link HttpServletResponse#SC_CREATED} should be returned along with the
+   * created entity as json. Otherwise, {@link HttpServletResponse#SC_BAD_REQUEST}
+   * will be returned.
    * 
    * <p>The url should look as follows:
-   * <code><pre>
+   * <pre>
    *    /api/{entityName}
-   * </pre></code>
+   * </pre>
    * 
-   * @param entity the entity to create
+   * @param entity the entity to create.
    * @return a HttpServletResponse representing the result of the creation action
    */
   @POST

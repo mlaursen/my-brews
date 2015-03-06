@@ -10,7 +10,7 @@ import com.github.mlaursen.mybrews.api.crud.GenericCRUDResource;
 import com.github.mlaursen.mybrews.entity.beer.Beer;
 
 /**
- *
+ * 
  * @author mlaursen
  *
  */

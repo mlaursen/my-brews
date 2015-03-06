@@ -35,6 +35,12 @@
 
 <p>Once the app has been deployed, you can navigate to <a href="http://localhost:8080/my-brews">localhost:8080/my-brews</a> to view it.
 
+<h3>Viewing Javadoc / Dependencies / Other stuffs</h3>
+<p>To view all javadoc and other maven information, run <pre>
+mvn site
+</pre>
+<p>This will generate the maven site with javadoc and other information in your <code>/target/site</code> folder.
+
 <h3>Web Services</h3>
 <p>Currently, all the web services have a consistent pattern because they were declared using interfaces.
 <h4>Retrieving Data</h4>

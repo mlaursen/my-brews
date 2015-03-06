@@ -9,5 +9,13 @@ angular.module('MyBeerApp')
 
         $scope.beers = jsonData;
       });
+    
+    $scope.viewBeer = function(id) {
+      BeerFactory.getBeer(id)
+        .success(function(jsonData, statusCode) {
+          console.log('The single beer was retrieved!', statusCode, jsonData);
 
+          $scope.beer = jsonData;
+        });
+    };
   });

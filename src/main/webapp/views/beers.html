@@ -1,7 +1,6 @@
 <h3>Beers</h3>
-  {{ beers }}
 <div class="beers-container">
-  <div ng-repeat="beer in beers" class="beer-container">
+  <div ng-repeat="beer in beers" class="beer-container" ng-click="viewBeer(beer.id)">
     <h3>{{ beer.name }}</h3>
     <div class"beer-info">
       <span class="style">{{ beer.beerStyle.name }}</span>

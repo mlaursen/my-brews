@@ -12,5 +12,12 @@ angular.module('MyBeerApp')
         });
     };
 
+    exports.getBeer = function(id) {
+      return $http.get('api/beer/' + id)
+        .error(function(data) {
+          console.log('There was an error getting the beer :/', data);
+        });
+    };
+
     return exports;
   });

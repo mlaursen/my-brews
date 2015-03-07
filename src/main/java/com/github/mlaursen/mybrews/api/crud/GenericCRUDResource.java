@@ -13,6 +13,7 @@ import javax.ws.rs.core.Response.Status;
 
 import org.jboss.logging.Logger;
 
+import com.github.mlaursen.mybrews.api.BaseResource;
 import com.github.mlaursen.mybrews.entity.GeneratedIdEntity;
 import com.github.mlaursen.mybrews.util.ResponseBuilder;
 
@@ -32,11 +33,8 @@ import com.github.mlaursen.mybrews.util.ResponseBuilder;
  * 
  * @author mlaursen
  */
-public abstract class GenericCRUDResource<E extends GeneratedIdEntity> implements CreateableResource<E>, RetrievableResource, UpdateableResource<E>, DeleteableResource<E>, AllRetrievableResource<E> {
+public abstract class GenericCRUDResource<E extends GeneratedIdEntity> extends BaseResource implements CreateableResource<E>, RetrievableResource, UpdateableResource<E>, DeleteableResource<E>, AllRetrievableResource<E> {
   private static Logger logger = Logger.getLogger(GenericCRUDResource.class);
-  
-  @PersistenceContext(unitName = "mybrews")
-  protected EntityManager em;
   
   private Class<E> entityClass;
   

@@ -21,4 +21,5 @@ public class RecipeResource extends GenericCRUDResource<Recipe> {
   public RecipeResource() {
     super(Recipe.class);
   }
+  
 }

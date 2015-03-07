@@ -32,6 +32,7 @@ If you do not have postgresql, here are the steps for setup/install on linux.
 sudo apt-get install -y postgresql-client postgresql postgresql-contrib pgadmin3
 ```
 > **pgadmin3** is *optional*. It is the GUI tool.
+
 Once it is installed, you can connect with:
 ```bash
 sudo -u {db-user} psql {db-name}
@@ -40,6 +41,7 @@ sudo -u {db-user} psql {db-name}
 ```bash
 sudo useradd {username}
 ```
+
 To create the database and user for the default configuration in the `pom.xml`
 ```bash
 sudo -u postgres createuser -D -A -P mybrews
@@ -57,7 +59,7 @@ Once you have Ruby and the rubygems fixed, you can install sass and compass with
 ```bash
 gem install sass compass
 ```
-*(Linux might require `sudo`).*
+> Linux might require **sudo**.
 
 ## Building, Deploying, and Running
 ##### Compiling SASS

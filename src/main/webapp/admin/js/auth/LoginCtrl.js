@@ -10,6 +10,7 @@ angular.module('AuthModule')
       AuthFactory.setAuthData(data);
       console.log('Logged in!', data);
     }).error(function(data) {
+      AuthFactory.setAuthData(null);
       console.log('There was an authentication problem.', data)
     });
   }

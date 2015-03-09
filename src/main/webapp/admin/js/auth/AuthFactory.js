@@ -9,11 +9,15 @@ angular.module('AuthModule')
   }
   
   authFactory.setAuthData = function(authData) {
-    this.authData = {
-      authId: authData.authId,
-      authToken: authData.authToken,
-      authPermission: authData.authPermission
-    };
+    if(authData == null || authData == undefined) {
+      this.authData = undefined;
+    } else {
+      this.authData = {
+        authId: authData.authId,
+        authToken: authData.authToken,
+        authPermission: authData.authPermission
+      };
+    }
     
     $rootScope.$broadcast('authChanged', this.authData);
   };

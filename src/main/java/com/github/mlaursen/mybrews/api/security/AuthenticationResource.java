@@ -3,6 +3,7 @@ package com.github.mlaursen.mybrews.api.security;
 import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -10,7 +11,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
 
 import com.github.mlaursen.mybrews.api.BaseResource;
 
@@ -33,6 +33,6 @@ public class AuthenticationResource extends BaseResource {
       return Response.ok(access, MediaType.APPLICATION_JSON).build();
     }
     
-    return Response.status(Status.FORBIDDEN).build();
+    return Response.status(HttpServletResponse.SC_NOT_FOUND).build();
   }
 }

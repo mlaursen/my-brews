@@ -3,21 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+  .container {
+    width: 40%;
+    margin: auto;
+    margin-top: 8em;
+  }
+</style>
 </head>
 <body ng-controller="ApplicationCtrl">
-  <div class="app" ng-show="getUser()">
-    {{ getUser() }}
+  <div class="container">
+    <div class="app" ng-show="getUser()">
+      You are now logged in with the following credentials:
+      <pre>
+        {{ getUser() }}
+      </pre>
+    </div>
+    <div class="not-logged-in" ng-hide="getUser()">
+      You are not logged in. You can log in with test/test
+    </div>
+    
+    <form name="loginForm" ng-submit="login(credentials)" novalidate ng-controller="LoginCtrl">
+      <label for="username">Username</label>
+      <input type="text" id="username" ng-model="credentials.username" placeholder="test">
+      
+      <label for="password">Password</label>
+      <input type="text" id="password" ng-model="credentials.password" placeholder="test">
+      
+      <button type="submit">Login</button>
+    </form>
   </div>
-  
-  <form name="loginForm" ng-submit="login(credentials)" novalidate ng-controller="LoginCtrl">
-    <label for="username">Username</label>
-    <input type="text" id="username" ng-model="credentials.username">
-    
-    <label for="password">Password</label>
-    <input type="text" id="password" ng-model="credentials.password">
-    
-    <button type="submit">Login</button>
-  </form>
   
   <script src="/my-brews/resources/3rdparty/angular-1.3.14/angular.js"></script>
   

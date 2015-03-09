@@ -9,6 +9,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import com.github.mlaursen.mybrews.api.BaseResource;
 
@@ -23,13 +25,14 @@ public class AuthenticationResource extends BaseResource {
   @POST
   @Path("/login")
   @PermitAll
-  public AuthenticationAccessElement login(@Context HttpServletRequest request, AuthenticationLoginElement loginElement) {
+  public Response login(@Context HttpServletRequest request, AuthenticationLoginElement loginElement) {
     AuthenticationAccessElement access = auth.login(loginElement);
     if(access != null) {
       request.getSession().setAttribute(AuthenticationAccessElement.AUTH_ID, access.getAuthId());
       request.getSession().setAttribute(AuthenticationAccessElement.AUTH_TOKEN, access.getAuthToken());
+      return Response.ok(access, MediaType.APPLICATION_JSON).build();
     }
     
-    return access;
+    return Response.status(Status.FORBIDDEN).build();
   }
 }

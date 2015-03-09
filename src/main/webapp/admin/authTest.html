@@ -4,9 +4,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body ng-controller="LoginCtrl">
+<body ng-controller="ApplicationCtrl">
+  <div class="app">
+    {{ getUser() }}
+  </div>
   
-  <form name="loginForm" ng-submit="login(credentials)" novalidate>
+  <form name="loginForm" ng-submit="login(credentials)" novalidate ng-controller="LoginCtrl">
     <label for="username">Username</label>
     <input type="text" id="username" ng-model="credentials.username">
     
@@ -22,5 +25,6 @@
   <script src="js/auth/AuthFactory.js"></script>
   <script src="js/auth/AuthInterceptor.js"></script>
   <script src="js/auth/LoginCtrl.js"></script>
+  <script src="js/auth/ApplicationCtrl.js"></script>
 </body>
 </html>

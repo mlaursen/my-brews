@@ -15,7 +15,7 @@ angular.module('AuthModule')
       authPermission: authData.authPermission
     };
     
-    $rootScope.$broadcast('authChanged');
+    $rootScope.$broadcast('authChanged', this.authData);
   };
     
   authFactory.getAuthData = function() {

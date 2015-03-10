@@ -27,7 +27,6 @@
   -webkit-animation: $animation;
      -moz-animation: $animation;
           animation: $animation;
-  -webkit-animation: $animation;
 }
 
 @mixin keyframes($name) {
@@ -54,4 +53,41 @@
   -webkit-animation-delay: $time;
      -moz-animation-delay: $time;
           animation-delay: $time;
+}
+
+@mixin backface-visibility($visibility) {
+  -webkit-backface-visibility: $visibility;
+     -moz-backface-visibility: $visibility;
+          backface-visibility: $visibility;
+}
+@mixin opacity-transition($time) {
+  -webkit-transition: opacity $time;
+     -moz-transition: opacity $time;
+          transition: opacity $time;
+}
+@mixin transition-duration($time) {
+  -webkit-transition-duration: $time;
+     -moz-transition-duration: $time;
+          transition-duration: $time;
+}
+
+@mixin animation-duration($time) {
+  -webkit-animation-duration: $time;
+     -moz-animation-duration: $time;
+          animation-duration: $time;
+}
+
+@mixin animation-fill-mode($direction) {
+  -webkit-animation-fill-mode: $direction;
+          animation-fill-mode: $direction;
+}
+
+@mixin animation-timing-function($fn) {
+  -webkit-animation-timing-function: $fn;
+          animation-timing-function: $fn;
+}
+
+@mixin animation-name($name) {
+  -webkit-animation-name: $name;
+          animation-name: $name;
 }

@@ -1,6 +1,20 @@
 @import "modules/colors";
 
-button {
+button,
+input[type="button"],
+input[type="submit"] {
   font: inherit;
   font-size: inherit;
+  cursor: pointer;
+}
+
+button.fa,
+input[type="button"].fa,
+input[type="submit"].fa {
+  background-color: transparent;
+  border: none;
+  
+  &:focus {
+    outline: none;
+  }
 }

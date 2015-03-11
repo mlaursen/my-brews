@@ -4,15 +4,19 @@
 package com.github.mlaursen.mybrews.api.crud;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.ejb.EJBException;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import javax.persistence.NoResultException;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import org.jboss.logging.Logger;
 
+import com.github.mlaursen.mybrews.api.BaseResource;
 import com.github.mlaursen.mybrews.entity.GeneratedIdEntity;
 import com.github.mlaursen.mybrews.util.ResponseBuilder;
 
@@ -28,15 +32,13 @@ import com.github.mlaursen.mybrews.util.ResponseBuilder;
  *   }
  * </pre>
  * 
- * <p>This Generic CRUD Resource also defines a {@link #findById(Long) findById} method to be used in subclasses.
+ * <p>This Generic CRUD Resource also defines a few methods to be used in subclasses for common uses. Examples:
+ * binding parameters, executing a named query with parameters...
  * 
  * @author mlaursen
  */
-public abstract class GenericCRUDResource<E extends GeneratedIdEntity> implements CreateableResource<E>, RetrievableResource, UpdateableResource<E>, DeleteableResource<E>, AllRetrievableResource<E> {
+public abstract class GenericCRUDResource<E extends GeneratedIdEntity> extends BaseResource implements CreateableResource<E>, RetrievableResource, UpdateableResource<E>, DeleteableResource<E>, AllRetrievableResource<E> {
   private static Logger logger = Logger.getLogger(GenericCRUDResource.class);
-  
-  @PersistenceContext(unitName = "mybrews")
-  protected EntityManager em;
   
   private Class<E> entityClass;
   
@@ -44,8 +46,78 @@ public abstract class GenericCRUDResource<E extends GeneratedIdEntity> implement
     this.entityClass = entityClass;
   }
   
+  /**
+   * Attempts to find an entity by the given id
+   * @param id the id
+   * @return the Entity or null
+   */
   protected E findById(Long id) {
     return em.find(entityClass, id);
+  }
+  
+  /**
+   * Binds all the parameters to a given query.
+   * @param q the query to bind to
+   * @param parameters a map of binding name and object to bind
+   */
+  protected void bindParameters(Query q, Map<String, Object> parameters) {
+    if(parameters != null && !parameters.isEmpty()) {
+      for(Entry<String, Object> parameter : parameters.entrySet()) {
+        q.setParameter(parameter.getKey(), parameter.getValue());
+      }
+    }
+  }
+  
+  /**
+   * Attempts to find a single entity with the given named query
+   * @param namedQuery the named query to execute
+   * @return the found entity or null
+   */
+  protected E findOneResult(String namedQuery) {
+    return findOneResult(namedQuery, null);
+  }
+  
+  /**
+   * Attempts to find a single entity with the given named query and the parameters
+   * @param namedQuery the named query to execute
+   * @param parameters the parameters to bind (Allows null)
+   * @return the found entity or null
+   */
+  protected E findOneResult(String namedQuery, Map<String, Object> parameters) {
+    E foundEntity = null;
+    try {
+      TypedQuery<E> q = em.createNamedQuery(namedQuery, entityClass);
+      bindParameters(q, parameters);
+      
+      foundEntity = q.getSingleResult();
+    } catch(NoResultException e) {
+      if(logger.isDebugEnabled()) {
+        logger.debug("Unable to find entity " + entityClass + " with the parameters " + parameters);
+      }
+    }
+    
+    return foundEntity;
+  }
+  
+  /**
+   * Finds a list of entities for the given named query
+   * @param namedQuery the named query to execute
+   * @return the List of entity results
+   */
+  protected List<E> findResultList(String namedQuery) {
+    return findResultList(namedQuery, null);
+  }
+  
+  /**
+   * Finds a list of entities wiht the given named query and optional parameters
+   * @param namedQuery the named query to execute
+   * @param parameters the parameters to bind in the query (Allows null)
+   * @return the List of entity results
+   */
+  protected List<E> findResultList(String namedQuery, Map<String, Object> parameters) {
+    TypedQuery<E> q = em.createNamedQuery(namedQuery, entityClass);
+    
+    return q.getResultList();
   }
   
   @Override

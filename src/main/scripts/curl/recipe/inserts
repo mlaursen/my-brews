@@ -1,0 +1,6 @@
+#!/bin/bash
+curl -H "Content-Type: application/json" \
+     -d '{ "yeast": { "id": "1" } , 
+           "boilTime": "60"
+         }' \
+         localhost:8080/my-brews/api/recipe

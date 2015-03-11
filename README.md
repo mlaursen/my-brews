@@ -7,10 +7,10 @@ This is a website for tracking the beers that I brew for the office and at home.
 - AngularJS
 - [Font Awesome Icons][3]
 - jQuery (Should get replaced by angular)
-- [mement.js][4]
+- [moment.js][4]
 
 ##### Back End / Building
-- Java 8 and J2EE 7.0
+- Java 8 and JEE 7.0
 - Maven
 
 ## Project Requirements

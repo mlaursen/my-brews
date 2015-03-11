@@ -1,0 +1,7 @@
+#!/bin/bash
+curl -H "Content-Type: application/json" \
+     -d '{ "boilTime": "60",
+           "amount": "0.75",
+           "unit": "LBS"
+         }' \
+         localhost:8080/my-brews/api/recipemalt/1;maltId=1

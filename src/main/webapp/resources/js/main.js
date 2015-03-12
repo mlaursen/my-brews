@@ -1,5 +1,5 @@
 $(window).scroll(function() {
-  if($(this).scrollTop() > 160) {
+  if($(this).scrollTop() > 84) {
     $(".navbar").addClass("sticky");
     $(".content").addClass("sticky");
   } else {

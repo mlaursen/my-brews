@@ -1,14 +1,51 @@
 @import "modules/colors";
 @import "modules/mixins";
 
-$header-img-size: 1456px;
 html,
 body {
   height: 100%;
   margin: 0;
 }
 
+$navbar-bar-height: 70px;
+$logo-height: 228px;
+$navbar-vertical-padding: ($logo-height + 10 - $navbar-bar-height) / 2;
 
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  color: #fff;
+  font-size: 1.5em;
+  line-height: 1.5em;
+  padding: $navbar-vertical-padding 0;
+
+  > * {
+    flex-grow: 1;
+    flex-basis: 200px;
+    height: $navbar-bar-height;
+    background-color: $blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .logo-container {
+    flex-basis: 250px;
+    flex-grow: 0;
+
+    .logo {
+      border-radius: 50%;
+      background-color: $blue;
+    }
+  }
+
+}
+
+
+/*
 header.header {
   background-color: $ghost-white;
 
@@ -120,7 +157,7 @@ header.header {
   }
 
   50% {
-    @include transform(translateX(#{(1104 - $header-img-size)}));
+    @include transform(translateX(#{(1104 - 1145px)}));
   }
 
   100% {
@@ -157,3 +194,4 @@ header.header {
     margin: 0;
   }
 }
+*/

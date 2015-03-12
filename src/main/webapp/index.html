@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="resources/3rdparty/font-awesome-4.3.0/css/font-awesome.min.css" type="text/css">
   </head>
   <body>
-    <header class="header">
+    <!--<header class="header">
       <div class="wrapper">
         <div class="brand">
         </div>
@@ -47,6 +47,32 @@
         </form>
       </div>
     </header>
+    -->
+    <header class="navbar">
+      <nav>
+        <button type="button" class="btn-icon-text">
+          <span class="fa fa-beer"></span>
+          <span>Beers</span>
+        </button>
+
+        <button type="button" class="btn-icon-text">
+          <span class="fa fa-calendar"></span>
+          <span>Calendar</span>
+        </button>
+      </nav>
+
+      <div class="logo-container">
+        <img src="http://i.imgur.com/pPRTum3.png" class="logo" width="227px" height="228px">
+      </div>
+
+      <div class="search-container">
+        <input type="text" placeholder="Belgian, Wheat, Stout" id="main-search" name="main-search">
+        <button type="submit" class="search">
+          <span class="fa fa-search"></span>
+        </button>
+      </div>
+    </header>
+
 
     <div class="content">
       <ng-view></ng-view>

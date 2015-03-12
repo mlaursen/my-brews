@@ -39,6 +39,8 @@ import com.github.mlaursen.mybrews.util.ResponseBuilder;
  */
 public abstract class GenericCRUDResource<E extends GeneratedIdEntity> extends BaseResource implements CreateableResource<E>, RetrievableResource, UpdateableResource<E>, DeleteableResource<E>, AllRetrievableResource<E> {
   private static Logger logger = Logger.getLogger(GenericCRUDResource.class);
+  private static final String LOCATION_HEADER = "Location";
+  private static final String LOCATION_HEADER_FORMAT = "/api/%ss/%d";
   
   private Class<E> entityClass;
   
@@ -142,14 +144,13 @@ public abstract class GenericCRUDResource<E extends GeneratedIdEntity> extends B
     try {
       em.persist(entity);
       
-      status = Status.CREATED;
+      return Response.status(Status.CREATED).header(LOCATION_HEADER, 
+          String.format(LOCATION_HEADER_FORMAT, entityClass.getSimpleName().toLowerCase(), entity.getId())).build();
     } catch(EJBException e) {
       logger.error(e);
       
-      status = Status.INTERNAL_SERVER_ERROR;
+      return Response.status(Status.NOT_FOUND).build();
     }
-    
-    return ResponseBuilder.buildResponse(status, entity);
   }
   
   @Override
@@ -187,13 +188,13 @@ public abstract class GenericCRUDResource<E extends GeneratedIdEntity> extends B
     if(entity == null) {
       logger.error("The entity to update was null for " + entityClass);
       
-      return Response.status(status).build();
+      return Response.status(Status.NO_CONTENT).build();
     }
     
     if(entity.getId() == null) {
       logger.error("The entity's id does not exist. Do a create call instead.");
       
-      return Response.status(status).build();
+      return Response.status(Status.NOT_FOUND).build();
     }
     
     E fromDB = findById(entity.getId());
@@ -207,14 +208,14 @@ public abstract class GenericCRUDResource<E extends GeneratedIdEntity> extends B
     try {
       em.merge(entity);
       
-      status = Status.ACCEPTED;
+      status = Status.OK;
     } catch(EJBException e) {
       logger.error(e);
       
       status = Status.INTERNAL_SERVER_ERROR;
     }
     
-    return ResponseBuilder.buildResponse(status, entity);
+    return Response.status(status).build();
   }
   
   @Override
@@ -223,7 +224,7 @@ public abstract class GenericCRUDResource<E extends GeneratedIdEntity> extends B
     if(id == null) {
       logger.error("Attempting to delete a " + entityClass + "with no id.");
       
-      return Response.status(status).build();
+      return Response.status(Status.NOT_FOUND).build();
     }
     
     E fromDB = findById(id);

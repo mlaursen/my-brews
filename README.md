@@ -90,10 +90,15 @@ mvn site
 which will generate a maven site with all dependencies and generated javadoc in  your `/target/site` folder which you can then open and view in a browser.
 
 ## Web Services
+
+Resource used for planning RESTful web services: http://www.restapitutorial.com/lessons/httpmethods.html
+
 ### CRUD
 This application is pretty much just create, retrieve, update, and ~~delete~~.
 > Well.. now that I think about it, probably not too much delete.
 To keep consistent, I created an interface for each method so they will all have the same path when fully implemented.
+
+> Any time there is an **{entityName}**, it is a pluralized version.
 
 ##### Retrieving Data
 Any entity will be retrieved just by sending a `GET` request to **/api/_{entityName}_/{id}**. An HTTPResponse will be returned with the entity (if found). If the entity is not found, Status Code **404** *(Not Found)* will be returned, otherwise **202** *(OK)* with the entity as json.
@@ -102,14 +107,14 @@ To retrieve all of a single entity, send a `GET` request to **/api/_{entityName}
 
 Some example curl calls:
 ```bash
-curl -iX GET localhost:8080/my-brews/api/beer
-curl -iX GET localhost:8080/my-brews/api/beer/1
+curl -iX GET localhost:8080/my-brews/api/beers
+curl -iX GET localhost:8080/my-brews/api/beers/1
 ```
 
 The first call will retrieve all beers and the second call will attempt to find beer with id 1. Since there currently is no data for beer, try these curl requests (constants).
 ```bash
-curl -iX GET localhost:8080/my-brews/api/beerstyle
-curl -iX GET localhost:8080/my-brews/api/beercolor/1
+curl -iX GET localhost:8080/my-brews/api/beerstyles
+curl -iX GET localhost:8080/my-brews/api/beercolors/1
 ```
 The first call will retrieve all beer styles and the other call will return the beer color with id 1.
 
@@ -120,11 +125,17 @@ An example curl call:
 ```bash
 curl -H "Content-Type: application/json" \
      -d '{"name": "Wyeast #1332 Northwest Ale Yeast", "type": "LIQUID"}' \
-     localhost:8080/my-brews/api/yeast
+     -i localhost:8080/my-brews/api/yeasts
 ```
-This will create a new yeast with the name and given Yeast Type. We can use our fancy get request and view the new yeast we made.
+This will create a new yeast with the name and given Yeast Type. This will return a status of 201 *(Created)* if successful along with a *Location* header with a link to the new resource. A successful create would return something like this:
 ```bash
-curl -iX GET localhost:8080/my-brews/api/yeast/1
+**HTTP/1.1 201 Created**
+Connection: keep-alive
+X-Powered-By: Undertow/1
+Server: WildFly/8
+**Location: /api/yeasts/1**
+Content-Length: 0
+Date: Thu, 12 Mar 2015 00:19:51 GMT
 ```
 
 #### Updating Data
@@ -135,14 +146,14 @@ An example update of the yeast we just created:
 ```bash
 curl -H "Content-Type: application/json" \
      -X PUT -d '{"id": "1", "name": "Wyeast #1332 Northwest Ale Yeast", "type": "DRY"}' \
-     localhost:8080/my-brews/api/yeast
+     -i localhost:8080/my-brews/api/yeasts
 ```
 This updates the yeast we just created to have a DRY yeast type. Super exciting!
 
 #### Deleting Data
 An entity can be deleted by sending a <code>DELETE</code> request to **/api/_{entityName}_/_{id}_**. So lets delete that yeast we just created:
 ```bash
-curl -iX DELETE localhost:8080/my-brews/api/yeast/1
+curl -iX DELETE localhost:8080/my-brews/api/yeasts/1
 ```
 Wala! [Magic!](http://i.imgur.com/t9P566O.jpg])
 

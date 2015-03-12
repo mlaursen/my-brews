@@ -15,7 +15,7 @@ import com.github.mlaursen.mybrews.entity.lookup.BeerColor;
  *
  */
 @Stateless
-@Path("/beercolor")
+@Path("/beercolors")
 public class BeerColorResource extends GenericCRUDResource<BeerColor> {
 
   public BeerColorResource() {

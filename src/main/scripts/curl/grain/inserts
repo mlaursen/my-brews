@@ -1,9 +1,9 @@
 #!/bin/bash
 curl -H "Content-Type: application/json" \
      -d '{"name": "English Medium Crystal Malt"}' \
-          localhost:8080/my-brews/api/grain
+          localhost:8080/my-brews/api/grains
 
 curl -H "Content-Type: application/json" \
      -d '{"name": "Belgian Biscuit Malt"}' \
-          localhost:8080/my-brews/api/grain
+          localhost:8080/my-brews/api/grains
 

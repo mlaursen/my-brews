@@ -2,4 +2,4 @@
 
 curl -H "Content-Type: application/json" \
      -d '{"name": "Wyeast #1332 Northwest Ale Yeast", "type": "LIQUID"}' \
-          localhost:8080/my-brews/api/yeast
+          localhost:8080/my-brews/api/yeasts

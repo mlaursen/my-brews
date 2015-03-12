@@ -15,7 +15,7 @@ import com.github.mlaursen.mybrews.entity.recipe.Recipe;
  *
  */
 @Stateless
-@Path("/recipe")
+@Path("/recipes")
 public class RecipeResource extends GenericCRUDResource<Recipe> {
   
   public RecipeResource() {

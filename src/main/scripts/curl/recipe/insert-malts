@@ -4,4 +4,4 @@ curl -H "Content-Type: application/json" \
            "amount": "0.75",
            "unit": "LBS"
          }' \
-         localhost:8080/my-brews/api/recipemalt/1;maltId=1
+         localhost:8080/my-brews/api/recipemalts/1;maltId=1

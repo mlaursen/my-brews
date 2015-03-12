@@ -17,7 +17,7 @@ import com.github.mlaursen.mybrews.entity.recipe.Recipe;
 import com.github.mlaursen.mybrews.entity.recipe.RecipeMalt;
 
 @Stateless
-@Path("/recipemalt")
+@Path("/recipemalts")
 public class RecipeMaltResource extends BaseResource {
   @Inject
   private RecipeResource recipeResource;

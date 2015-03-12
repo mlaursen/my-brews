@@ -15,7 +15,7 @@ import com.github.mlaursen.mybrews.entity.lookup.BeerStyle;
  *
  */
 @Stateless
-@Path("/beerstyle")
+@Path("/beerstyles")
 public class BeerStyleResource extends GenericCRUDResource<BeerStyle> {
 
   public BeerStyleResource() {

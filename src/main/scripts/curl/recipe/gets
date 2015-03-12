@@ -1,2 +1,2 @@
 #!/bin/bash
-curl -iX GET localhost:8080/my-brews/api/recipe
+curl -iX GET localhost:8080/my-brews/api/recipes

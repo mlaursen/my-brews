@@ -15,7 +15,7 @@ import com.github.mlaursen.mybrews.entity.lookup.Malt;
  *
  */
 @Stateless
-@Path("/malt")
+@Path("/malts")
 public class MaltResource extends GenericCRUDResource<Malt> {
   
   public MaltResource() {

@@ -15,7 +15,7 @@ import com.github.mlaursen.mybrews.entity.lookup.Yeast;
  *
  */
 @Stateless
-@Path("/yeast")
+@Path("/yeasts")
 public class YeastResource extends GenericCRUDResource<Yeast> {
   
   public YeastResource() {

@@ -31,7 +31,8 @@ public interface CreateableResource<E extends GeneratedIdEntity> {
    * </pre>
    * 
    * @param entity the entity to create.
-   * @return a HttpServletResponse representing the result of the creation action
+   * @return a HttpServletResponse representing the result of the creation action and a Location
+   *         header of containing the new id. Ex: <code>/api/{entityName}/{id}
    */
   @POST
   @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})

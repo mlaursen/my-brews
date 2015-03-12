@@ -15,7 +15,7 @@ import com.github.mlaursen.mybrews.entity.lookup.Grain;
  *
  */
 @Stateless
-@Path("/grain")
+@Path("/grains")
 public class GrainResource extends GenericCRUDResource<Grain> {
   
   public GrainResource() {

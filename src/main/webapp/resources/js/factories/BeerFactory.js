@@ -3,7 +3,7 @@ angular.module('MyBeerApp')
     var exports = {};
 
     exports.getBeers = function() {
-      return $http.get('api/beer')
+      return $http.get('api/beers')
         .success(function(data) {
           console.log('Success!');
         })
@@ -13,7 +13,7 @@ angular.module('MyBeerApp')
     };
 
     exports.getBeer = function(id) {
-      return $http.get('api/beer/' + id)
+      return $http.get('api/beers/' + id)
         .error(function(data) {
           console.log('There was an error getting the beer :/', data);
         });

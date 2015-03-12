@@ -15,7 +15,7 @@ import com.github.mlaursen.mybrews.entity.beer.Beer;
  *
  */
 @Stateless
-@Path("/beer")
+@Path("/beers")
 public class BeerResource extends GenericCRUDResource<Beer> {
   
   public BeerResource() {

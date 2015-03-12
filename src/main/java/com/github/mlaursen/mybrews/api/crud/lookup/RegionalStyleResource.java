@@ -15,7 +15,7 @@ import com.github.mlaursen.mybrews.entity.lookup.RegionalStyle;
  *
  */
 @Stateless
-@Path("/regionalstyle")
+@Path("/regionalstyles")
 public class RegionalStyleResource extends GenericCRUDResource<RegionalStyle> {
   public RegionalStyleResource() {
     super(RegionalStyle.class);

@@ -129,11 +129,11 @@ curl -H "Content-Type: application/json" \
 ```
 This will create a new yeast with the name and given Yeast Type. This will return a status of 201 *(Created)* if successful along with a *Location* header with a link to the new resource. A successful create would return something like this:
 ```bash
-**HTTP/1.1 201 Created**
+HTTP/1.1 201 Created
 Connection: keep-alive
 X-Powered-By: Undertow/1
 Server: WildFly/8
-**Location: /api/yeasts/1**
+Location: /api/yeasts/1
 Content-Length: 0
 Date: Thu, 12 Mar 2015 00:19:51 GMT
 ```

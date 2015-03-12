@@ -1,7 +1,9 @@
 angular.module('MyBeerApp', [
-    'ngRoute',
-    'ngSanitize'
-]).config(function ($routeProvider) {
+  'ngRoute',
+  'ngSanitize'
+]).constant(
+  'REST_URL', 'http://localhost:8080/my-brews/api/'
+).config(function ($routeProvider) {
   'use strict';
 
   $routeProvider
@@ -25,4 +27,8 @@ angular.module('MyBeerApp', [
       redirectTo: '/beer'
     });
 
-});
+}).config(['$httpProvider', function($httpProvider) {
+  
+  $httpProvider.defaults.useXDomain = true;
+  delete $httpProvider.defaults.headers.common['X-Requested-With'];
+}]);

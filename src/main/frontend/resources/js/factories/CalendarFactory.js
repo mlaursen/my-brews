@@ -1,5 +1,5 @@
 angular.module('MyBeerApp')
-  .factory('CalendarFactory', function CalendarFactory($http) {
+  .factory('CalendarFactory', function CalendarFactory($http, REST_URL) {
     var exports = {};
 
     exports.getEvents = function() {

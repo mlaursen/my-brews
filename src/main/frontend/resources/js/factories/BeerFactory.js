@@ -1,9 +1,9 @@
 angular.module('MyBeerApp')
-  .factory('BeerFactory', function BeerFactory($http) {
+  .factory('BeerFactory', function BeerFactory($http, REST_URL) {
     var exports = {};
 
     exports.getBeers = function() {
-      return $http.get('api/beers')
+      return $http.get(REST_URL + 'beers')
         .success(function(data) {
           console.log('Success!');
         })
@@ -13,7 +13,7 @@ angular.module('MyBeerApp')
     };
 
     exports.getBeer = function(id) {
-      return $http.get('api/beers/' + id)
+      return $http.get(REST_URL + 'beers/' + id)
         .error(function(data) {
           console.log('There was an error getting the beer :/', data);
         });

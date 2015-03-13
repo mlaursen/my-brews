@@ -8,8 +8,10 @@ body {
 }
 
 $navbar-bar-height: 70px;
+$logo-width: 227px;
 $logo-height: 228px;
 $navbar-vertical-padding: ($logo-height + 10 - $navbar-bar-height) / 2;
+$header-img-size: 1546px;
 
 .navbar {
   display: flex;
@@ -23,6 +25,7 @@ $navbar-vertical-padding: ($logo-height + 10 - $navbar-bar-height) / 2;
   padding: $navbar-vertical-padding 0;
   width: 100%;
 
+
   > * {
     flex-grow: 1;
     flex-basis: 200px;
@@ -31,6 +34,8 @@ $navbar-vertical-padding: ($logo-height + 10 - $navbar-bar-height) / 2;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @include transition(all 0.3s ease);
   }
 
   .logo-container {
@@ -40,6 +45,12 @@ $navbar-vertical-padding: ($logo-height + 10 - $navbar-bar-height) / 2;
     .logo {
       border-radius: 50%;
       background-color: $blue;
+
+      @include transition(all 0.3s linear);
+
+      > img {
+        vertical-align: middle;
+      }
     }
   }
 
@@ -55,7 +66,9 @@ $navbar-vertical-padding: ($logo-height + 10 - $navbar-bar-height) / 2;
     }
 
     .logo-container .logo {
-      display: none;
+      opacity: 0;
+      height: $logo-height * .6;
+      width: $logo-width * .6;
     }
   }
 

@@ -1,1 +1,64 @@
-@import "partials/beer";
+@import "modules/colors";
+
+.beers-container {
+  display: flex;
+  flex-direction: row;
+  max-width: 960px;
+  margin: auto;
+  
+  .beer-container {
+    flex-basis: 220px;
+    padding: 1.5em;
+    box-shadow: 0 3px 0;
+    border-radius: 30px;
+    
+    header {
+      position: relative;
+      padding-bottom: 0.5em;
+      font-size: 1.3em;
+      font-family: 'Patua One', cursive;
+      text-align: center;
+      
+      &:after {
+        content: '';
+        width: 100%;
+        position: absolute;
+        height: 2px;
+        bottom: 10%;
+        left: 0;
+        background: #fff;
+      }
+    }
+    
+    > * {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.9em;
+      letter-spacing: .56px;
+      margin: 0;
+      color: #fff;
+    }
+    
+    > div {
+      text-align: center;
+      
+      span {
+        text-transform: uppercase;
+      }
+      
+      span.separator::before {
+        content: '|';
+      }
+      
+    }
+    
+    > p {;
+      padding-top: 1em;
+    }
+  }
+}
+
+
+.beer-amber {
+  background-color: #FFC107;
+  color: #FFA000;
+}

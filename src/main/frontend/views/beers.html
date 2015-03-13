@@ -1,14 +1,14 @@
 <h3>Beers</h3>
 <div class="beers-container">
-  <div ng-repeat="beer in beers" class="beer-container" ng-click="viewBeer(beer.id)">
-    <h3>{{ beer.name }}</h3>
-    <div class"beer-info">
-      <span class="style">{{ beer.beerStyle.name }}</span>
-      <span class="style">{{ beer.regionalStyle.name }}</span>
-      <span class="color">{{ beer.beerColor.name }}</span>
-      <div class="description">
-        {{ beer.description }}
-      </div>
+  <div ng-repeat="beer in beers" class="beer-container beer-{{ beer.beerColor.name | lowercase }}" ng-click="viewBeer(beer.id)">
+    <header>
+      {{ beer.name }}
+    </header>
+    <div>
+      <span>{{ beer.beerStyle.name }}</span>
+      <span class="separator"></span>
+      <span>{{ beer.regionalStyle.name }}</span>
     </div>
+    <p>{{ beer.description }}</p>
   </div>
 </div>

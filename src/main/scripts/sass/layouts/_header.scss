@@ -7,6 +7,8 @@ body {
   margin: 0;
 }
 
+@import url(http://fonts.googleapis.com/css?family=Open+Sans|Oswald|Patua+One);
+
 $navbar-bar-height: 70px;
 $logo-width: 227px;
 $logo-height: 228px;
@@ -24,13 +26,14 @@ $header-img-size: 1546px;
   line-height: 1.8;
   padding: $navbar-vertical-padding 0;
   width: 100%;
+  font-family: 'Open Sans', sans-serif;
 
 
   > * {
     flex-grow: 1;
     flex-basis: 200px;
     height: $navbar-bar-height;
-    background-color: $blue;
+    background-color: $dark-blue;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,7 +47,7 @@ $header-img-size: 1546px;
 
     .logo {
       border-radius: 50%;
-      background-color: $blue;
+      background-color: $dark-blue;
 
       @include transition(all 0.3s linear);
 

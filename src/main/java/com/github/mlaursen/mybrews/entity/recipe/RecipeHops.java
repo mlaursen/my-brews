@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.github.mlaursen.mybrews.constants.WeightUnit;
 import com.github.mlaursen.mybrews.entity.lookup.Hops;
 
 /**
@@ -22,6 +23,15 @@ public class RecipeHops extends RecipeBoilTimePart {
   @OneToOne
   @JoinColumn(name = "hops_id")
   private Hops hops;
+  
+  public RecipeHops() {
+  }
+  
+  public RecipeHops(Hops hops, Integer boilTime) {
+    this.hops = hops;
+    setBoilTime(boilTime);
+    setUnit(WeightUnit.OZ);
+  }
 
   /**
    * @return the malt

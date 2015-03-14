@@ -53,7 +53,7 @@ public abstract class GenericCRUDResource<E extends GeneratedIdEntity> extends B
    * @param id the id
    * @return the Entity or null
    */
-  protected E findById(Long id) {
+  public E findById(Long id) {
     return em.find(entityClass, id);
   }
   
@@ -75,7 +75,7 @@ public abstract class GenericCRUDResource<E extends GeneratedIdEntity> extends B
    * @param namedQuery the named query to execute
    * @return the found entity or null
    */
-  protected E findOneResult(String namedQuery) {
+  public E findOneResult(String namedQuery) {
     return findOneResult(namedQuery, null);
   }
   
@@ -85,7 +85,7 @@ public abstract class GenericCRUDResource<E extends GeneratedIdEntity> extends B
    * @param parameters the parameters to bind (Allows null)
    * @return the found entity or null
    */
-  protected E findOneResult(String namedQuery, Map<String, Object> parameters) {
+  public E findOneResult(String namedQuery, Map<String, Object> parameters) {
     E foundEntity = null;
     try {
       TypedQuery<E> q = em.createNamedQuery(namedQuery, entityClass);
@@ -106,7 +106,7 @@ public abstract class GenericCRUDResource<E extends GeneratedIdEntity> extends B
    * @param namedQuery the named query to execute
    * @return the List of entity results
    */
-  protected List<E> findResultList(String namedQuery) {
+  public List<E> findResultList(String namedQuery) {
     return findResultList(namedQuery, null);
   }
   
@@ -116,7 +116,7 @@ public abstract class GenericCRUDResource<E extends GeneratedIdEntity> extends B
    * @param parameters the parameters to bind in the query (Allows null)
    * @return the List of entity results
    */
-  protected List<E> findResultList(String namedQuery, Map<String, Object> parameters) {
+  public List<E> findResultList(String namedQuery, Map<String, Object> parameters) {
     TypedQuery<E> q = em.createNamedQuery(namedQuery, entityClass);
     
     return q.getResultList();

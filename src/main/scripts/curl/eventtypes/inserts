@@ -1,0 +1,20 @@
+#!/bin/bash
+curl -H "Content-type: application/json" \
+     -d '{ "name": "BREW" , "color": "BLUE" }' \
+     localhost:8080/my-brews/api/eventtypes
+         
+curl -H "Content-type: application/json" \
+     -d '{ "name": "SECONDARY" , "color": "RED"}' \
+     localhost:8080/my-brews/api/eventtypes
+
+curl -H "Content-type: application/json" \
+     -d '{ "name": "BOTTLE" , "color": "ORANGE" }' \
+     localhost:8080/my-brews/api/eventtypes
+
+curl -H "Content-type: application/json" \
+     -d '{ "name": "KEG" , "color": "ORANGE" }' \
+     localhost:8080/my-brews/api/eventtypes
+
+curl -H "Content-type: application/json" \
+     -d '{ "name": "DRINK" , "color": "GREEN" }' \
+     localhost:8080/my-brews/api/eventtypes

@@ -6,21 +6,18 @@ angular.module('MyBeerApp')
     
     $scope.currentDate = moment();
 
-    $scope.events2 = [
-      {
-        "name": "Test",
-        "type": "brewing"
-      },
-      {
-        "name": "Test Another",
-        "type": "drink"
-      }
-    ];
-
     CalendarFactory.getEvents()
       .success(function(jsonData, statusCode) {
         console.log('The request was successful!', statusCode, jsonData);
 
         $scope.events = jsonData;
       });
+    
+    $scope.getRangedEvents = function(year, month) {
+      CalendarFactory.getRangedEvents(year, month).success(function(data, code) {
+        console.log('The request was successful!', code, data);
+        
+        $scope.events = data;
+      });
+    };
   });

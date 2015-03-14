@@ -1,5 +1,5 @@
 angular.module('MyBeerApp')
-  .directive('calendar', function() {
+  .directive('calendar', function(CalendarFactory) {
     return {
       restrict: 'E',
       templateUrl: 'templates/calendar.html',
@@ -15,6 +15,7 @@ angular.module('MyBeerApp')
         startDate.date(1);
         _removeTime(startDate.day(0));
 
+        _getRangedEvents(2014, scope.month.month(), scope);
         _buildMonth(scope, startDate, scope.month);
 
         /* re-build the month when the events json get request finishes.. */
@@ -26,7 +27,8 @@ angular.module('MyBeerApp')
           var next = scope.month.clone();
           _removeTime(next.month(next.month() + 1).date(1));
           scope.month.month(scope.month.month() + 1);
-
+          
+          _getRangedEvents(2014, scope.month.month(), scope);
           _buildMonth(scope, next, scope.month);
 
           console.log('Next Month');
@@ -36,7 +38,8 @@ angular.module('MyBeerApp')
           var previous = scope.month.clone();
           _removeTime(previous.month(previous.month() - 1).date(1));
           scope.month.month(scope.month.month() - 1);
-
+          
+          _getRangedEvents(2014, scope.month.month(), scope);
           _buildMonth(scope, previous, scope.month);
 
           console.log('Previous Month');
@@ -85,9 +88,25 @@ angular.module('MyBeerApp')
 
     function _getEvents(scope, date) {
       var events = [];
-      if(date.isSame(new Date(), 'day')) {
-        events = scope.events;
+      
+      if(scope.events != null && scope.events != undefined && scope.events[0] != undefined && date.date() >= new Date(scope.events[0].eventDate).getDate()) {
+        for(var i = 0; i < scope.events.length; i++) {
+          var event = scope.events[i];
+          var eventDate = new Date(event.eventDate);
+          
+          if(date.isSame(eventDate, 'day')) {
+            events.push(event);
+          }
+        }
       }
       return events;
+    }
+    
+    function _getRangedEvents(year, month, scope) {
+      CalendarFactory.getRangedEvents(year, month).success(function(data, code) {
+        console.log('The request was successful!', code, data);
+        
+        scope.events = data;
+      });
     }
   });

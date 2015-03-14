@@ -16,6 +16,11 @@ angular.module('MyBeerApp')
           console.log('The single beer was retrieved!', statusCode, jsonData);
 
           $scope.beer = jsonData;
+          $scope.dialogClass = 'dialog-open';
         });
     };
+    
+    $scope.closeDialog = function() {
+      $scope.dialogClass = 'dialog-close';
+    }
   });

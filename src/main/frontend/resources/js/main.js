@@ -1,10 +1,10 @@
 $(window).scroll(function() {
   if($(this).scrollTop() > 84) {
     $(".navbar").addClass("sticky");
-    $(".content").addClass("sticky");
+    $(".content:first").addClass("sticky");
   } else {
     $(".navbar").removeClass("sticky");
-    $(".content").removeClass("sticky");
+    $(".content:first").removeClass("sticky");
   }
 });
 

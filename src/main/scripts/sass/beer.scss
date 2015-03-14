@@ -5,7 +5,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
-  max-width: 70%;
+  width: 960px;
   margin: auto;
   
   .beer-container {
@@ -97,4 +97,10 @@
 .beer-light {
   background-color: #CD8129;
   color: #794C19;
+}
+
+@media (max-width: 960px) {
+  .beers-container {
+    width: 95%;
+  }
 }

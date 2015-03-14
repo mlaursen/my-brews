@@ -77,6 +77,29 @@ $header-img-size: 1546px;
 
 }
 
+@media (max-width: 960px) {
+  .navbar {
+    display: block;
+    padding-top: $logo-height * .6 - 15;
+    
+    .logo-container {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: transparent;
+      height: $logo-height * .6;
+      width: $logo-width *.6;
+      margin: 0 auto;
+      
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+}
 
 /*
 header.header {

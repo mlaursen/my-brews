@@ -2,7 +2,7 @@ angular.module('MyBeerApp', [
   'ngRoute',
   'ngSanitize'
 ]).constant(
-  'REST_URL', 'http://localhost:8080/my-brews/api/'
+  'REST_URL', 'http://10.0.0.17:8080/my-brews/api/'
 ).config(function ($routeProvider) {
   'use strict';
 

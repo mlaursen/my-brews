@@ -13,7 +13,9 @@ $navbar-bar-height: 70px;
 $logo-width: 227px;
 $logo-height: 228px;
 $navbar-vertical-padding: ($logo-height + 10 - $navbar-bar-height) / 2;
-$header-img-size: 1546px;
+$header-img-height: 160px;
+$header-img-scale: $logo-width / $header-img-height;
+$header-img-size: 1453px * $header-img-scale;
 
 .navbar {
   display: flex;
@@ -44,6 +46,39 @@ $header-img-size: 1546px;
   .logo-container {
     flex-basis: 250px;
     flex-grow: 0;
+    
+    .marquee {
+      position: relative;
+      width: $logo-height;
+      height: $logo-height;
+      overflow: hidden;
+      
+      -webkit-clip-path: circle(($logo-height / 2) at ($logo-height / 2));
+      clip-path: circle(($logo-height / 2) at ($logo-height / 2));
+      @include transition(all 0.3s linear);
+      
+      > * {
+        height: 100%;
+      }
+      
+      .overlay {
+        position: absolute;
+        opacity: 0.2;
+        background-color: $dark-blue;
+        width: 100%;
+        z-index: 3;
+      }
+      
+      .slider {
+        @include animation(move-slideshow 120s linear 2);
+      }
+      
+      .slider-overlay {
+        position: absolute;
+        z-index: 4;
+        top: 0;
+      }
+    }
 
     .logo {
       border-radius: 50%;
@@ -68,10 +103,8 @@ $header-img-size: 1546px;
       height: 50px;
     }
 
-    .logo-container .logo {
+    .logo-container .marquee {
       opacity: 0;
-      height: $logo-height * .6;
-      width: $logo-width * .6;
     }
   }
 
@@ -101,153 +134,16 @@ $header-img-size: 1546px;
   }
 }
 
-/*
-header.header {
-  background-color: $ghost-white;
-
-  .wrapper {
-    width: 100%;
-    padding: 0;
-
-    > div {
-      display: inline-block;
-      vertical-align: top;
-    }
-
-    .brand {
-      font-size: 3.5em;
-      width: 20%;
-    }
-    
-    .marquee {
-      position: relative;
-      background-color: #fff;
-      height: 160px;
-      width: 60%;
-      margin: auto;
-      overflow: hidden;
-
-      @include box-shadow(0 0 10px rgba(0, 0, 0, 0.3));
-
-      &:before,
-      &:after {
-        content: '';
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 50px;
-        z-index: 1;
-      }
-
-      &:before {
-        left: 0;
-
-        @include background-gradient(left, $white-1, $white-0);
-      }
-
-      &:after {
-        right: 0;
-
-        @include background-gradient(left, $white-0, $white-1);
-      }
-
-      > .slide {
-        background: url('../imgs/header.png');
-        width: $header-img-size;
-        height: 100%;
-
-        @include transition(opacity 0.5s ease-out);
-        @include animation(move-slideshow 30s linear infinite);
-
-        &:hover {
-          opacity: 0.8;
-        }
-      }
-    }
-  }
-
-  .navbar {
-    background-color: $primary-compliment-color;
-    width: 100%;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    font-size: 1.5em;
-    line-height: 2;
-    padding: 0.3em 0;
-    z-index: 99999;
-
-
-    @include transition(all 0.4s ease);
-
-    &.sticky {
-      position: fixed;
-      top: 0;
-      font-size: 1.2em;
-    }
-  }
-}
-
-.navigation {
-  display: flex;
-  margin: 0;
-  flex-grow: 1;
-
-  li {
-    list-style: none;
-    margin: 0 1em;
-    color: #fff;
-
-    a {
-      color: #fff;
-      font-weight: 700;
-    }
-
-  }
-}
-
-
 @include keyframes(move-slideshow) {
   0% {
     @include transform(translateX(0));
   }
 
   50% {
-    @include transform(translateX(#{(1104 - 1145px)}));
+    @include transform(translateX(-$header-img-size + $logo-width));
   }
 
   100% {
     @include transform(translateX(0));
   }
 }
-
-@include keyframes(move-slideshow-media) {
-  0% {
-    @include transform(translateX(0));
-  }
-
-  50% {
-    @include transform(translateX(-850px));
-  }
-
-  100% {
-    @include transform(translateX(0));
-  }
-}
-
-@media (max-width: 1490px) {
-  .header .wrapper .brand {
-    font-size: 2.5em;
-  }
-
-  .header .wrapper .marquee > .slide {
-    @include animation(move-slideshow-media 60s linear infinite);
-  }
-}
-
-@media (max-width: 880px) {
-  .header .navbar .search-form {
-    margin: 0;
-  }
-}
-*/

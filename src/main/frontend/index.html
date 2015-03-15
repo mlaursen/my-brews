@@ -10,44 +10,6 @@
     <link rel="stylesheet" href="resources/3rdparty/font-awesome-4.3.0/css/font-awesome.min.css" type="text/css">
   </head>
   <body>
-    <!--<header class="header">
-      <div class="wrapper">
-        <div class="brand">
-        </div>
-        <div class="marquee">
-          <div class="slide">
-          </div>
-        </div>
-      </div>
-
-      <div class="navbar">
-        <ul class="navigation">
-          <li>
-            <a href="#/beer" class="icon-link">
-              <span class="fa fa-beer"></span><span>Beers</span>
-            </a>
-          </li>
-          <li>
-            <a href="#/calendar" class="icon-link">
-              <span class="fa fa-calendar"></span><span>Calendar</span>
-            </a>
-          </li>
-        </ul>
-
-        <form name="search-form" class="search-form">
-          <div class="search-box">
-            <label for="search" class="filter-by">
-              <span class="fa fa-search"></span>
-            </label>
-            <input type="text" id="search-field" name="search-field" class="search" placeholder="belgian, wheat, stout" />
-            <button type="button" class="clear" data-target="search-field">
-              <span class="fa fa-times"></span>
-            </button>
-          </div>
-        </form>
-      </div>
-    </header>
-    -->
     <header class="navbar">
       <nav>
         <button type="button" class="btn-icon-text" onclick="location.href='#/beer'">
@@ -62,7 +24,11 @@
       </nav>
 
       <div class="logo-container">
-        <img src="resources/imgs/logo.png" class="logo">
+        <div class="marquee">
+          <span class="overlay"></span>
+          <img src="resources/imgs/header.png" class="slider">
+          <img src="resources/imgs/logo.png" class="slider-overlay">
+        </div>
       </div>
 
       <div class="search-container">

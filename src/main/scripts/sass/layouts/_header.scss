@@ -12,10 +12,15 @@ body {
 $navbar-bar-height: 70px;
 $logo-width: 227px;
 $logo-height: 228px;
+$logo-width-media: $logo-width * .6;
+$logo-height-media: $logo-height * .6;
 $navbar-vertical-padding: ($logo-height + 10 - $navbar-bar-height) / 2;
 $header-img-height: 160px;
 $header-img-scale: $logo-width / $header-img-height;
+$header-img-scale-media: $logo-width-media / $header-img-height;
 $header-img-size: 1453px * $header-img-scale;
+$header-img-size-media: 1453px * $header-img-scale-media;
+$header-clip: $logo-height / 2;
 
 .navbar {
   display: flex;
@@ -53,8 +58,8 @@ $header-img-size: 1453px * $header-img-scale;
       height: $logo-height;
       overflow: hidden;
       
-      -webkit-clip-path: circle(($logo-height / 2) at ($logo-height / 2));
-      clip-path: circle(($logo-height / 2) at ($logo-height / 2));
+      -webkit-clip-path: circle($header-clip at $header-clip);
+      clip-path: circle($header-clip at $header-clip);
       @include transition(all 0.3s linear);
       
       > * {
@@ -70,24 +75,13 @@ $header-img-size: 1453px * $header-img-scale;
       }
       
       .slider {
-        @include animation(move-slideshow 120s linear 2);
+        @include animation(move-slideshow 120s linear 1);
       }
       
       .slider-overlay {
         position: absolute;
         z-index: 4;
         top: 0;
-      }
-    }
-
-    .logo {
-      border-radius: 50%;
-      background-color: $dark-blue;
-
-      @include transition(all 0.3s linear);
-
-      > img {
-        vertical-align: middle;
       }
     }
   }
@@ -105,6 +99,11 @@ $header-img-size: 1453px * $header-img-scale;
 
     .logo-container .marquee {
       opacity: 0;
+      
+      .slider {
+        // slight performance boost
+        @include animation(none);
+      }
     }
   }
 
@@ -122,13 +121,23 @@ $header-img-size: 1453px * $header-img-scale;
       left: 0;
       right: 0;
       background: transparent;
-      height: $logo-height * .6;
-      width: $logo-width *.6;
+      height: $logo-height-media;
+      width: $logo-width-media;
       margin: 0 auto;
       
-      img {
+      .marquee {
         width: 100%;
-        height: auto;
+        height: 100%;
+        -webkit-clip-path: circle($logo-height-media / 2 at $logo-height-media / 2);
+        clip-path: circle($logo-height-media at $logo-height-media);
+      
+        .slider {
+          @include animation(move-slideshow-media (120 * 1.6)s linear 1);
+        }
+        
+        .slider-overlay {
+          height: $logo-height-media;
+        }
       }
     }
   }
@@ -141,6 +150,20 @@ $header-img-size: 1453px * $header-img-scale;
 
   50% {
     @include transform(translateX(-$header-img-size + $logo-width));
+  }
+
+  100% {
+    @include transform(translateX(0));
+  }
+}
+
+@include keyframes(move-slideshow-media) {
+  0% {
+    @include transform(translateX(0));
+  }
+
+  50% {
+    @include transform(translateX(-$header-img-size-media + $logo-width-media));
   }
 
   100% {

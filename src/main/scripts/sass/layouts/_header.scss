@@ -58,13 +58,18 @@ $header-clip: $logo-height / 2;
       width: $logo-height;
       height: $logo-height;
       overflow: hidden;
+      border-radius: 50%;
       
       -webkit-clip-path: circle($header-clip at $header-clip);
-      clip-path: circle($header-clip at $header-clip);
-      @include transition(all 0.3s linear);
+              clip-path: circle($header-clip at $header-clip);
       
       > * {
         height: 100%;
+        @include transition(all 0.3s linear);
+        -webkit-transition-property: opacity, border;
+           -moz-transition-property: opacity, border;
+                transition-property: opacity, border;
+        
       }
       
       .overlay {
@@ -76,13 +81,34 @@ $header-clip: $logo-height / 2;
       }
       
       .slider {
-        @include animation(move-slideshow 120s linear infinite);
+        @include animation(move-slideshow 120s linear 5);
       }
       
-      .main-logo {
+      .logo {
         position: absolute;
+        border: 6px solid #fff;
+        border-radius: 50%;
+        top: 6px;
+        left: 6px;
+        height: 204px;
+        width: 203px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
         z-index: 4;
-        top: 0;
+        line-height: initial;
+        
+        span:first-child {
+          font-family: 'Berkshire Swash', cursive;
+          font-size: 45px;
+        }
+        span:last-child {
+          font-size: 0.75em;
+          letter-spacing: 2.7px;
+          font-family: Cambria, Georgia, serif;
+          text-transform: uppercase;
+        }
       }
     }
   }
@@ -94,16 +120,32 @@ $header-clip: $logo-height / 2;
     line-height: 1.6;
     z-index: 8;
 
-    > * {
+    > *, .logo-container .logo {
       height: 50px;
     }
 
-    .logo-container .marquee {
-      opacity: 0;
-      
-      .slider {
-        // slight performance boost
-        @include animation(none);
+    .logo-container {
+      .marquee {
+        
+        .slider,
+        .overlay {
+          opacity: 0;
+        }
+        
+        .logo {
+          border: none;
+          top: 88px;
+          left: 0;
+          width: 100%;
+          
+          span:first-child {
+            font-size: 45px * .8;
+          }
+          
+          span:last-child {
+            display: none;
+          }
+        }
       }
     }
   }
@@ -113,32 +155,34 @@ $header-clip: $logo-height / 2;
 @media (max-width: 960px) {
   .navbar {
     display: block;
-    padding-top: $logo-height * .6 - 15;
+    padding-top: 0;
     
     .logo-container {
       display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      background: transparent;
-      height: $logo-height-media;
-      width: $logo-width-media;
-      margin: 0 auto;
       
       .marquee {
-        width: 100%;
+        -webkit-clip-path: none;
+        clip-path: none;
+        display: flex;
         height: 100%;
-        -webkit-clip-path: circle($logo-height-media / 2 at $logo-height-media / 2);
-        clip-path: circle($logo-height-media at $logo-height-media);
-      
-        .slider {
-          @include animation(move-slideshow-media (120 * 1.6)s linear infinite);
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        
+        .overlay, .slider {
+          display: none;
         }
         
-        .main-logo {
-          height: $logo-height-media;
+        .logo {
+          position: initial;
+          border: none;
         }
+      }
+    }
+    
+    &.sticky {
+      .logo-container {
+        display: none;
       }
     }
   }

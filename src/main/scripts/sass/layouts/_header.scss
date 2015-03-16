@@ -8,6 +8,7 @@ body {
 }
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans|Oswald|Patua+One);
+@import url(http://fonts.googleapis.com/css?family=Berkshire+Swash);
 
 $navbar-bar-height: 70px;
 $logo-width: 227px;
@@ -68,17 +69,17 @@ $header-clip: $logo-height / 2;
       
       .overlay {
         position: absolute;
-        opacity: 0.2;
+        opacity: 0.46;
         background-color: $dark-blue;
         width: 100%;
         z-index: 3;
       }
       
       .slider {
-        @include animation(move-slideshow 120s linear 1);
+        @include animation(move-slideshow 120s linear infinite);
       }
       
-      .slider-overlay {
+      .main-logo {
         position: absolute;
         z-index: 4;
         top: 0;
@@ -132,10 +133,10 @@ $header-clip: $logo-height / 2;
         clip-path: circle($logo-height-media at $logo-height-media);
       
         .slider {
-          @include animation(move-slideshow-media (120 * 1.6)s linear 1);
+          @include animation(move-slideshow-media (120 * 1.6)s linear infinite);
         }
         
-        .slider-overlay {
+        .main-logo {
           height: $logo-height-media;
         }
       }

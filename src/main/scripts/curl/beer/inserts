@@ -8,14 +8,14 @@
 #         }' \
 #         localhost:8080/my-brews/api/beers
 
-#curl -H "Content-Type: application/json" \
-#     -d '{ "name": "Caribou Slobber"
-#         , "beerStyle": {"id": 5}
-#         , "regionalStyle": {"id": 4}
-#         , "beerColor": {"id": 3}
-#         , "description": "Your new favorite session beer. Dense layers of malt, caramel, baking chocolate, and a hint of light-roast coffee give way to reveal a hop character you\u0027ll be surprised to find if you\u0027re used to drinking English brown ale."
-#         }' \
-#         localhost:8080/my-brews/api/beers
+curl -H "Content-Type: application/json" \
+     -d '{ "name": "Caribou Slobber"
+         , "beerStyle": {"id": 5}
+         , "regionalStyle": {"id": 4}
+         , "beerColor": {"id": 3}
+         , "description": "Your new favorite session beer. Dense layers of malt, caramel, baking chocolate, and a hint of light-roast coffee give way to reveal a hop character you\u0027ll be surprised to find if you\u0027re used to drinking English brown ale."
+         }' \
+         -i localhost:8080/my-brews/api/beers
 
 curl -H "Content-type: application/json" \
      -d '{ "name": "Bourbon Barrel Porter"
@@ -24,7 +24,7 @@ curl -H "Content-type: application/json" \
          , "beerColor": {"id": 3}
          , "description": "Bourbon barrel-aged beers have been a hugely popular style ever since their inception in the early \u002790s by American craft brewers. By starting with a stronger-than-average robust porter, then infusing it with Bourbon-soaked oak (we recommend Maker\u0027s Mark), the end result is quite possibly the best beer ever."
          }' \
-         localhost:8080/my-brews/api/beers
+         -i localhost:8080/my-brews/api/beers
          
 curl -H "Content-type: application/json" \
      -d '{ "name": "Honey Brown Ale"
@@ -33,7 +33,7 @@ curl -H "Content-type: application/json" \
          , "beerColor": {"id": 2}
          , "description": "What would happen if you augmented the slightly dry, caramelly and roasty character of a smooth, mellow English brown ale with the sweet floral flavor of honey? What if you added the honey at the very last possible minute to maximize its presence in the finished beer? What if it was delicious? This recipe is a spinoff of our highly popular Nut Brown Ale kit that combines American malts, hops and ale yeast with honey. A well-balanced and intensely drinkable beer."
          }' \
-         localhost:8080/my-brews/api/beers
+         -i localhost:8080/my-brews/api/beers
          
  curl -H "Content-type: application/json" \
      -d '{ "name": "Tru Hefe"
@@ -42,4 +42,4 @@ curl -H "Content-type: application/json" \
          , "beerColor": {"id": 1}
          , "description": "One of the signature brews of Bavaria, Hefeweizen is a medium-bodied, effervescent ale practically exploding with yeast and wheat malt character – kind of like a liquid multigrain bread. Our kit is 100% traditional—cloudy, malty, and spicy, with a smooth mouthfeel and dense, whipped-cream head. Serve in a tall glass \u0022mit hefe\u0022 - swirl the bottle to make sure you get all the yeast!"
          }' \
-         localhost:8080/my-brews/api/beers
+         -i localhost:8080/my-brews/api/beers

@@ -5,6 +5,8 @@ package com.github.mlaursen.mybrews.entity.beer;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -18,7 +20,14 @@ import com.github.mlaursen.mybrews.entity.recipe.Recipe;
  */
 @Entity
 @XmlRootElement
+@NamedQueries({
+  @NamedQuery(
+    name = BrewedBeer.Q_findByBeerId,
+    query = "SELECT bb FROM BrewedBeer bb where bb.beer.id = :beerId"
+  )
+})
 public class BrewedBeer extends GeneratedIdEntity {
+  public static final String Q_findByBeerId = "BrewedBeer.findByBeerId";
 
   @OneToOne
   @JoinColumn(name = "beer_id")

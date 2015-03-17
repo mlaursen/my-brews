@@ -2,6 +2,7 @@
 angular.module('MyBeerApp')
   .controller('BeerCtrl', function BeerCtrl($scope, BeerFactory) {
     'use strict';
+    $scope.dialogVisible = undefined;
 
     BeerFactory.getBeers()
       .success(function(jsonData, statusCode) {
@@ -16,11 +17,7 @@ angular.module('MyBeerApp')
           console.log('The single beer was retrieved!', statusCode, jsonData);
 
           $scope.beer = jsonData;
-          $scope.dialogClass = 'dialog-open';
+          $scope.dialogVisible = true;
         });
     };
-    
-    $scope.closeDialog = function() {
-      $scope.dialogClass = 'dialog-close';
-    }
   });

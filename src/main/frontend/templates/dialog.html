@@ -1,0 +1,13 @@
+<div class="dialog" role="dialog" aria-labelledby="dialog-label" 
+     ng-class="visible === undefined ? '' : (visible ? 'dialog-open' : 'dialog-close')">
+  <div class="dialog-overlay" ng-click="closeDialog()"></div>
+  <div class="dialog-content">
+    <div class="header">
+      <button type="button" class="fa fa-times dialog-close" ng-click="closeDialog()"></button>
+      <h4 class="dialog-title">{{ header }}</h4>
+    </div>
+    <div class="content" ng-transclude>
+      
+    </div>
+  </div>
+</div>

@@ -11,15 +11,9 @@
     <p>{{ beer.description }}</p>
   </div>
 </div>
-<div class="dialog" role="dialog" aria-labelledby="dialog-label" ng-class="dialogClass">
-  <div class="dialog-overlay" ng-click="closeDialog()"></div>
-  <div class="dialog-content">
-    <div class="header">
-      <button type="button" class="fa fa-times dialog-close" ng-click="closeDialog()"></button>
-      <h4 class="dialog-title">{{ beer.name }}</h4>
-    </div>
-    <div class="content">
-      {{ beer.description }}
-    </div>
-  </div>
-</div>
+
+<modal-dialog visible="dialogVisible" header="beer.name">
+  <p>
+    {{ beer.description }}
+  </p>
+</modal-dialog>

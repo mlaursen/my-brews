@@ -11,7 +11,7 @@ angular.module('MyBeerApp', [
       controller: 'CalendarCtrl'
     }).when('/beer', {
       templateUrl: 'views/beers.html',
-      controller: 'BeerCtrl'
+      controller: 'BeersCtrl'
     }).when('/beer/:id', {
       templateUrl: 'views/beer.html',
       controller: 'BeerCtrl'

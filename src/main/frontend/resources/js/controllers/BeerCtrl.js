@@ -1,23 +1,11 @@
 
 angular.module('MyBeerApp')
-  .controller('BeerCtrl', function BeerCtrl($scope, BeerFactory) {
+  .controller('BeerCtrl', function BeerCtrl($scope, $routeParams, BeerFactory) {
     'use strict';
-    $scope.dialogVisible = undefined;
 
-    BeerFactory.getBeers()
-      .success(function(jsonData, statusCode) {
-        console.log('The request was successful!', statusCode, jsonData);
+    BeerFactory.getBeer($routeParams.id).success(function(jsonData, statusCode) {
+      console.log('The single beer was retrieved!', statusCode, jsonData);
 
-        $scope.beers = jsonData;
-      });
-    
-    $scope.viewBeer = function(id) {
-      BeerFactory.getBeer(id)
-        .success(function(jsonData, statusCode) {
-          console.log('The single beer was retrieved!', statusCode, jsonData);
-
-          $scope.beer = jsonData;
-          $scope.dialogVisible = true;
-        });
-    };
+      $scope.beer = jsonData;
+    });
   });

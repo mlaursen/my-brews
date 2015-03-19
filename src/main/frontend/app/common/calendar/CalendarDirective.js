@@ -2,7 +2,7 @@ angular.module('MyBeerApp')
   .directive('calendar', function(CalendarFactory) {
     return {
       restrict: 'E',
-      templateUrl: 'templates/calendar.html',
+      templateUrl: 'app/common/calendar/calendar.tmpl.html',
       scope: {
         current: '=current',
         events: '=events'

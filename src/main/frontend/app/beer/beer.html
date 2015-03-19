@@ -1,3 +1,15 @@
+<div class="beer-container beer-{{ beer.beerColor.name | lowercase }}">
+  <header>
+    {{ beer.name }}
+  </header>
+  <div>
+    <span>{{ beer.beerStyle.name }}</span>
+    <span class="separator"></span>
+    <span>{{ beer.regionalStyle.name }}</span>
+  </div>
+  <p>{{ beer.description }}</p>
+</div>
+<!-- 
 <h3>{{ beer.name }}</h3>
 <div class="gravity-abv">
   {{ beer.og }} | {{ beer.fg}} - {{beer.abv}}
@@ -31,3 +43,4 @@
     </div>
   </div>
 </div>
+ -->

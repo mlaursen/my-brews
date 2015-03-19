@@ -77,7 +77,7 @@ public class EventResource extends GenericCRUDResource<Event> {
 //      truHefeRecipe.setGrains(grainResource.retrieveAll().stream().map(g -> new RecipeGrain(g, 5.5)).collect(Collectors.toList()));
 //      
 //      truHefe.setRecipe(truHefeRecipe);
-      truHefe.setBeer(beerResource.findById(5L));
+      truHefe.setBeer(beerResource.findById(6L));
       
       brew.setBrewedBeer(truHefe);
       

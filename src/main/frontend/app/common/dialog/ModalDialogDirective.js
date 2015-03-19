@@ -2,7 +2,7 @@ angular.module('MyBeerApp')
   .directive('modalDialog', function(CalendarFactory) {
     return {
       restrict: 'E',
-      templateUrl: 'templates/dialog.html',
+      templateUrl: 'app/common/dialog/dialog.html',
       replace: true,
       transclude: true,
       scope: {

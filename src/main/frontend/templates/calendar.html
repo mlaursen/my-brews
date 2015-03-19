@@ -20,7 +20,7 @@
 
     <div class="calendar-body">
       <div class="week" ng-repeat="week in weeks">
-        <div ng-repeat="day in week.days" ng-class="{ 'different-month': !day.isCurrentMonth, today: day.isToday }" >
+        <div ng-repeat="day in week.days" ng-class="{ 'different-month': !day.isCurrentMonth, today: day.isToday }" ng-click="viewEvents(day)" >
           <header>
             <span class="date">{{ day.number }}</span>
             <span class="meta">{{ day.dayOfWeek }}</span>
@@ -36,3 +36,12 @@
     </div>
   </div>
 </div>
+
+<modal-dialog header="currentDay.date.format('dddd MMMM DD, YYYY')" visible="dialogVisible">
+  <ul>
+    <li ng-repeat="event in currentDay.events" class="event-color-{{ event.eventType.color | lowercase }}">
+      <span class="">{{ event.eventType.name }}</span>
+      <span class="">{{ event.brewedBeer.beer.name }}</span>
+    </li>
+  </ul>
+</modal-dialog>

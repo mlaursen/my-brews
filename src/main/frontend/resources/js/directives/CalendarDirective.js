@@ -21,7 +21,7 @@ angular.module('MyBeerApp')
         /* re-build the month when the events json get request finishes.. */
         scope.$watch('events', function(newValue, oldValue) {
           _buildMonth(scope, startDate, scope.month);
-        })
+        });
 
         scope.next = function() {
           var next = scope.month.clone();
@@ -32,7 +32,7 @@ angular.module('MyBeerApp')
           _buildMonth(scope, next, scope.month);
 
           console.log('Next Month');
-        }
+        };
 
         scope.previous = function() {
           var previous = scope.month.clone();
@@ -43,7 +43,12 @@ angular.module('MyBeerApp')
           _buildMonth(scope, previous, scope.month);
 
           console.log('Previous Month');
-        }
+        };
+        
+        scope.viewEvents = function(day) {
+          scope.currentDay = day;
+          scope.dialogVisible = true;
+        };
       }
     };
 

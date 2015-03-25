@@ -16,6 +16,7 @@ import com.github.mlaursen.mybrews.entity.beer.Beer;
 import com.github.mlaursen.mybrews.entity.lookup.BeerColor;
 import com.github.mlaursen.mybrews.entity.lookup.BeerStyle;
 import com.github.mlaursen.mybrews.entity.lookup.RegionalStyle;
+import com.google.gson.Gson;
 
 /**
  * Abstract class for testing a Generic CRUD Resource. Since all the GenericCRUDResources
@@ -33,12 +34,12 @@ public abstract class AbstractGenericCRUDResourceUTest<R> {
   protected R resource;
   @Mock
   protected EntityManager em;
+  protected Dispatcher dispatcher;
+  protected Gson gson = new Gson();
   
   public AbstractGenericCRUDResourceUTest(R resource) {
     this.resource = resource;
   }
-  
-  protected Dispatcher dispatcher;
   
   public abstract void initializeMocking() throws Exception;
   

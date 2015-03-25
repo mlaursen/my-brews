@@ -3,13 +3,10 @@
  */
 package com.github.mlaursen.mybrews.api.crud;
 
-import java.util.List;
-
 import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-
-import com.github.mlaursen.mybrews.entity.GeneratedIdEntity;
+import javax.ws.rs.core.Response;
 
 /**
  * An interface for declaring that an entity can be have all results returned.
@@ -17,7 +14,7 @@ import com.github.mlaursen.mybrews.entity.GeneratedIdEntity;
  * @author mlaursen
  * @see GenericCRUDResource
  */
-public interface AllRetrievableResource<E extends GeneratedIdEntity> {
+public interface AllRetrievableResource {
 
   /**
    * Gets all of the specified entity.
@@ -31,5 +28,5 @@ public interface AllRetrievableResource<E extends GeneratedIdEntity> {
    */
   @GET
   @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-  List<E> retrieveAll();
+  Response retrieveAll();
 }

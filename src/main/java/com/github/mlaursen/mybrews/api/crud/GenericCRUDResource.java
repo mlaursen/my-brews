@@ -14,6 +14,8 @@ import javax.persistence.TypedQuery;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+
+
 import org.jboss.logging.Logger;
 
 import com.github.mlaursen.mybrews.api.BaseResource;
@@ -37,8 +39,8 @@ import com.github.mlaursen.mybrews.util.ResponseBuilder;
  * 
  * @author mlaursen
  */
-public abstract class GenericCRUDResource<E extends GeneratedIdEntity> extends BaseResource implements CreateableResource<E>, RetrievableResource, UpdateableResource<E>, DeleteableResource<E>, AllRetrievableResource<E> {
-  private static Logger logger = Logger.getLogger(GenericCRUDResource.class);
+public abstract class GenericCRUDResource<E extends GeneratedIdEntity> extends BaseResource implements CreateableResource<E>, RetrievableResource, UpdateableResource<E>, DeleteableResource<E>, AllRetrievableResource {
+  private static final Logger logger = Logger.getLogger(GenericCRUDResource.class);
   private static final String LOCATION_HEADER = "Location";
   private static final String LOCATION_HEADER_FORMAT = "/api/%ss/%d";
   
@@ -118,6 +120,7 @@ public abstract class GenericCRUDResource<E extends GeneratedIdEntity> extends B
    */
   public List<E> findResultList(String namedQuery, Map<String, Object> parameters) {
     TypedQuery<E> q = em.createNamedQuery(namedQuery, entityClass);
+    bindParameters(q, parameters);
     
     return q.getResultList();
   }
@@ -132,7 +135,7 @@ public abstract class GenericCRUDResource<E extends GeneratedIdEntity> extends B
     if(entity == null) {
       logger.error("The given entity is null");
       
-      return Response.status(status).build();
+      return Response.status(Status.NO_CONTENT).build();
     }
     
     if(entity.getId() != null) {
@@ -177,13 +180,13 @@ public abstract class GenericCRUDResource<E extends GeneratedIdEntity> extends B
   }
   
   @Override
-  public List<E> retrieveAll() {
-    return em.createQuery("SELECT ec FROM " + entityClass.getSimpleName() + " ec", entityClass).getResultList();
+  public Response retrieveAll() {
+    return ResponseBuilder.buildResponse(Status.OK, em.createQuery("SELECT ec FROM " + entityClass.getSimpleName() + " ec", entityClass).getResultList());
   }
 
   
   @Override
-  public Response update(E entity) {
+  public Response update(Long id, E entity) {
     Status status = Status.BAD_REQUEST;
     if(entity == null) {
       logger.error("The entity to update was null for " + entityClass);
@@ -191,13 +194,13 @@ public abstract class GenericCRUDResource<E extends GeneratedIdEntity> extends B
       return Response.status(Status.NO_CONTENT).build();
     }
     
-    if(entity.getId() == null) {
+    if(id == null) {
       logger.error("The entity's id does not exist. Do a create call instead.");
       
       return Response.status(Status.NOT_FOUND).build();
     }
     
-    E fromDB = findById(entity.getId());
+    E fromDB = findById(id);
     if(fromDB == null) {
       status = Status.NOT_FOUND;
       logger.error("The given entity does not exist in the database. " + entity);
@@ -206,6 +209,7 @@ public abstract class GenericCRUDResource<E extends GeneratedIdEntity> extends B
     }
     
     try {
+      entity.setId(id);
       em.merge(entity);
       
       status = Status.OK;

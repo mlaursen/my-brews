@@ -1,7 +1,12 @@
 @import "modules/colors";
 
 .content {
-
+  
+  .fixed-content {
+    max-width: 960px;
+    margin: auto;
+  }
+  
   &.sticky {
     padding-top: $logo-height;
   }
@@ -14,5 +19,4 @@
     font-size: 2em;
     padding: 1em 0;
   }
-
 }

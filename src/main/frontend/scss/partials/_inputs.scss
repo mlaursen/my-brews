@@ -1,0 +1,44 @@
+@import "modules/colors";
+
+
+input {
+  font: inherit;
+  line-height: inherit;
+}
+
+
+.search-box {
+  position: relative;
+
+  label.filter-by {
+    position: absolute;
+    left: 0.5em;
+  }
+
+  input.search {
+    padding: 0.3em 1.8em;
+    border-radius: 35px;
+    border-color: $blue;
+    @include transition(border-color ease-in-out .2s, box-shadow ease-in-out .2s);
+
+    &:focus {
+      outline: none;
+      border-color: $navy;
+    }
+  }
+  
+  button.clear {
+    position: absolute;
+    top: 0;
+    right: 0.3em;
+    border: none;
+    background: transparent;
+    color: $very-light-gray;
+    
+    &:hover,
+    &:focus {
+      opacity: 0.6;
+      outline: none;
+    }
+  }
+}

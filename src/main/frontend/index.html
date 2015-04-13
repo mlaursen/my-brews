@@ -3,13 +3,19 @@
   <head>
     <title>Mikali Brewing Co</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="assets/css/main.css" type="text/css">
-    <link rel="stylesheet" href="assets/css/beer.css" type="text/css">
-    <link rel="stylesheet" href="assets/css/calendar.css" type="text/css">
-    <link rel="shortcut icon" href="assets/imgs/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="assets/lib/font-awesome-4.3.0/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/main.css" type="text/css">
+    <link rel="stylesheet" href="/css/beer.css" type="text/css">
+    <link rel="stylesheet" href="/css/calendar.css" type="text/css">
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css" type="text/css">
+    <link rel="shortcut icon" href="/imgs/favicon.ico" type="image/x-icon">
   </head>
   <body>
+    <div id="navbar"></div>
+
+    <div id="content"></div>
+
+    <!--
     <header class="navbar">
       <nav>
         <button type="button" class="btn-icon-text" onclick="location.href='#/beer'">
@@ -45,28 +51,13 @@
 
     <div class="content" ng-view>
     </div>
+    -->
 
-    <script src="assets/lib/jquery/jquery-2.1.3.js"></script>
-    <script src="assets/lib/moment-2.9.0/moment.js"></script>
-    <script src="assets/lib/angular-1.3.14/angular.js"></script>
-    <script src="assets/lib/angular-1.3.14/angular-route.js"></script>
-    <script src="assets/lib/angular-1.3.14/angular-sanitize.js"></script>
+    <!-- 3rd party libs -->
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
 
-    <script src="app/app.module.js"></script>
-    <script src="app/app.routes.js"></script>
-    
-    <!-- Beers -->
-    <script src="app/beer/BeersCtrl.js"></script>
-    <script src="app/beer/BeerCtrl.js"></script>
-    <script src="app/beer/BeerFactory.js"></script>
-    
-    <!-- Calendar and Dialogs -->
-    <script src="app/common/calendar/CalendarCtrl.js"></script>
-    <script src="app/common/calendar/CalendarFactory.js"></script>
-    <script src="app/common/calendar/CalendarDirective.js"></script>
-    <script src="app/common/dialog/ModalDialogDirective.js"></script>
-    
-    <!-- Remaining JS -->
-    <script src="assets/js/main.js"></script>
+    <!-- main react bundle -->
+    <script src="/js/bundle.js"></script>
   </body>
 </html>

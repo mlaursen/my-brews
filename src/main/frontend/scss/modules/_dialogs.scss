@@ -1,0 +1,151 @@
+.dialog,
+.dialog-overlay {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.dialog {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.dialog.sticky-top {
+  align-items: flex-start;
+}
+
+.dialog.sticky-bottom {
+  align-items: flex-end;
+}
+
+.dialog-overlay {
+  position: absolute;
+  z-index: 1;
+  background: rgba(55, 58, 71, 0.9);
+  opacity: 0;
+  
+  @include opacity-transition(0.3s);
+  @include backface-visibility(hidden);
+  @include transition-duration(0.4s);
+}
+
+.dialog-open .dialog-overlay {
+  opacity: 0.7;
+  pointer-events: auto;
+}
+
+.dialog-content {
+  width: 50%;
+  max-width: 560px;
+  min-width: 290px;
+  background: #fff;
+  position: relative;
+  z-index: 5;
+  opacity: 0;
+  box-shadow: 0 0 5px $navy;
+  
+  .header {
+    padding: 0.5em 1em;
+    min-height: 1em;
+    
+    > * {
+      line-height: 1.5em;
+    }
+  }
+}
+
+.dialog.header-bar .header {
+  border-bottom: 2px solid $light-gray;
+}
+
+.dialog-content .content {
+  padding: 0 4em 4em;
+}
+
+.dialog.dialog-open .dialog-content,
+.dialog.dialog-close .dialog-content {
+  opacity: 1;
+  @include animation-duration(0.4s);
+  @include animation-fill-mode(forwards);
+}
+
+
+.dialog.dialog-close .dialog-content {
+  @include animation-name(anim-close-dialog);
+}
+
+.dialog-open .dialog-content {
+  pointer-events: auto;
+  @include animation-name(anim-open-dialog);
+  @include animation-timing-function(cubic-bezier(0.7, 0, 0.3, 1));
+}
+
+
+.dialog .fa.fa-times {
+  color: $very-light-gray;
+
+  &:hover {
+    outline: none;
+    opacity: 0.8;
+  }
+}
+
+.dialog .dialog-close {
+  float: right;
+}
+
+.dialog-title {
+  margin: 0;
+}
+
+@-webkit-keyframes anim-open-dialog {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes anim-open-dialog {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@-webkit-keyframes anim-close-dialog {
+  0% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+  }
+}
+
+@keyframes anim-close-dialog {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+}

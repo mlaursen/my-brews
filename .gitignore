@@ -6,3 +6,6 @@ target/
 .settings/
 *.swp
 .tern-project
+node_modules
+*.log
+build

@@ -1,0 +1,217 @@
+@import "modules/colors";
+@import "modules/mixins";
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans|Oswald|Patua+One);
+@import url(http://fonts.googleapis.com/css?family=Berkshire+Swash);
+
+$navbar-bar-height: 70px;
+$logo-width: 227px;
+$logo-height: 228px;
+$logo-width-media: $logo-width * .6;
+$logo-height-media: $logo-height * .6;
+$navbar-vertical-padding: ($logo-height + 10 - $navbar-bar-height) / 2;
+$header-img-height: 160px;
+$header-img-scale: $logo-width / $header-img-height;
+$header-img-scale-media: $logo-width-media / $header-img-height;
+$header-img-size: 1453px * $header-img-scale;
+$header-img-size-media: 1453px * $header-img-scale-media;
+$header-clip: $logo-height / 2;
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  color: #fff;
+  font-size: 1em;
+  line-height: 1.8;
+  padding: $navbar-vertical-padding 0;
+  width: 100%;
+  font-family: 'Open Sans', sans-serif;
+
+
+  > * {
+    flex-grow: 1;
+    flex-basis: 200px;
+    height: $navbar-bar-height;
+    background-color: $dark-blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include transition(all 0.3s ease);
+  }
+
+  .logo-container {
+    flex-basis: 250px;
+    flex-grow: 0;
+    
+    .marquee {
+      position: relative;
+      width: $logo-height;
+      height: $logo-height;
+      overflow: hidden;
+      border-radius: 50%;
+      
+      -webkit-clip-path: circle($header-clip at $header-clip);
+              clip-path: circle($header-clip at $header-clip);
+      
+      > * {
+        height: 100%;
+        @include transition(all 0.3s linear);
+        -webkit-transition-property: opacity, border;
+           -moz-transition-property: opacity, border;
+                transition-property: opacity, border;
+        
+      }
+      
+      .overlay {
+        position: absolute;
+        opacity: 0.46;
+        background-color: $dark-blue;
+        width: 100%;
+        z-index: 3;
+      }
+      
+      .slider {
+        @include animation(move-slideshow 120s linear 5);
+      }
+      
+      .logo {
+        position: absolute;
+        border: 6px solid #fff;
+        border-radius: 50%;
+        top: 6px;
+        left: 6px;
+        height: 204px;
+        width: 203px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        z-index: 4;
+        line-height: initial;
+        
+        span:first-child {
+          font-family: 'Berkshire Swash', cursive;
+          font-size: 45px;
+        }
+        span:last-child {
+          font-size: 0.75em;
+          letter-spacing: 2.7px;
+          font-family: Cambria, Georgia, serif;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+
+  &.sticky {
+    position: fixed;
+    padding: 0;
+    font-size: 0.9em;
+    line-height: 1.6;
+    z-index: 8;
+
+    > *, .logo-container .logo {
+      height: 50px;
+    }
+
+    .logo-container {
+      .marquee {
+        
+        .slider,
+        .overlay {
+          opacity: 0;
+        }
+        
+        .logo {
+          border: none;
+          top: 88px;
+          left: 0;
+          width: 100%;
+          
+          span:first-child {
+            font-size: 45px * .8;
+          }
+          
+          span:last-child {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+@media (max-width: 960px) {
+  .navbar {
+    display: block;
+    padding-top: 0;
+    
+    .logo-container {
+      display: block;
+      
+      .marquee {
+        -webkit-clip-path: none;
+        clip-path: none;
+        display: flex;
+        height: 100%;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        
+        .overlay, .slider {
+          display: none;
+        }
+        
+        .logo {
+          position: initial;
+          border: none;
+        }
+      }
+    }
+    
+    &.sticky {
+      .logo-container {
+        display: none;
+      }
+    }
+  }
+}
+
+@include keyframes(move-slideshow) {
+  0% {
+    @include transform(translateX(0));
+  }
+
+  50% {
+    @include transform(translateX(-$header-img-size + $logo-width));
+  }
+
+  100% {
+    @include transform(translateX(0));
+  }
+}
+
+@include keyframes(move-slideshow-media) {
+  0% {
+    @include transform(translateX(0));
+  }
+
+  50% {
+    @include transform(translateX(-$header-img-size-media + $logo-width-media));
+  }
+
+  100% {
+    @include transform(translateX(0));
+  }
+}

@@ -7,7 +7,7 @@ var ScrollingLogo = React.createClass({
         <div className="marquee">
           <span className="overlay"></span>
           <img src="imgs/header.png" className="slider" />
-          <div className="logo">
+          <div className="logo flex centered">
             <span>Mikali</span>
             <span>Brewing Company</span>
           </div>

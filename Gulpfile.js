@@ -35,7 +35,7 @@ var MIN = {
 // and creates minified version as well
 gulp.task('styles', function() {
   return sass(sassDir, SASS_CONFIG)
-    .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1'))
+    //.pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1'))
     .pipe(gulp.dest(distCssDir))
     .pipe(rename(MIN))
     .pipe(minifycss())

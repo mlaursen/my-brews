@@ -11,6 +11,31 @@
   visibility: hidden;
 }
 
+.clickable {
+  cursor: pointer;
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  
+  &.around {
+    justify-content: space-around;
+  }
+  
+  &.centered {
+    justify-content: center;
+    align-items: center;
+  }
+  
+  &.auto {
+    > * {
+      flex-grow: 1;
+    }
+  }
+}
+
 
 $search-border-radius: 20px;
 .search-container {

@@ -1,5 +1,5 @@
-<div class="beers-container">
-  <div ng-repeat="beer in beers" class="beer-container beer-{{ beer.beerColor.name | lowercase }}" ng-click="viewBeer(beer.id)">
+<div class="fixed-content flex around">
+  <div ng-repeat="beer in beers" class="beer-container clickable beer-{{ beer.beerColor.name | lowercase }}" ng-click="viewBeer(beer.id)">
     <header>
       {{ beer.name }}
     </header>

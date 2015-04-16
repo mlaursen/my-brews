@@ -7,11 +7,11 @@ var BeerSearch = require('../beer/BeerSearch.react');
 var Navbar = React.createClass({
   render: function() {
     return (
-      <header className="navbar">
+      <div className="navbar flex centered auto">
         <Navigation />
         <ScrollingLogo />
         <BeerSearch />
-      </header>
+      </div>
     );
   }
 });

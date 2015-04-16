@@ -1,11 +1,11 @@
-src/main/frontend/assets/css/
-.sass-cache/
-target/
+.sass-cache
+target
 .project
 .classpath
-.settings/
+.settings
 *.swp
 .tern-project
 node_modules
+bower_components
 *.log
-build
+dist

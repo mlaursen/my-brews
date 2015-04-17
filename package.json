@@ -30,8 +30,8 @@
     "gulp-rename": "^1.2.2",
     "gulp-ruby-sass": "^1.0.1",
     "merge-stream": "^0.1.7",
-    "react": "^0.13.1",
     "reactify": "^1.1.0",
+    "request": "^2.55.0",
     "tiny-lr": "^0.1.5",
     "watchify": "^3.1.0"
   },

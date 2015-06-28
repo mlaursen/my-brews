@@ -1,137 +1,175 @@
 var gulp = require('gulp'),
-    browserify = require('gulp-browserify');
+    browserify = require('browserify'),
+    reactify = require('reactify'),
+    source = require('vinyl-source-stream'),
     sass = require('gulp-ruby-sass'),
-    autoprefixer = require('gulp-autoprefixer'),
-    minifycss = require('gulp-minify-css'),
+    autoprefixer = require('autoprefixer-core'),
+    postcss = require('gulp-postcss'),
     rename = require('gulp-rename'),
-    path = require('path'),
-    merge = require('merge-stream');
+    gulpif = require('gulp-if'),
+    del = require('del'),
+    argv = require('yargs').argv,
+    uglify = require('gulp-uglify'),
+    browserSync = require('browser-sync');
 
-var srcDir = 'src/main/frontend';
-var jsDir = srcDir + '/js';
-var sassDir = srcDir + '/scss';
 
-var libDir = 'bower_components';
+var isProduction = argv.production;
 
-var distDir = 'dist';
-var distCssDir = distDir + '/css';
-var distJsDir  = distDir + '/js';
-var distLibDir = distDir + '/lib';
-var distImgDir = distDir + '/imgs';
-
-// Constant Configurations
-var SASS_CONFIG = {
-  style: 'expanded',
-};
-var BROWSERIFY_CONFIG = {
-  insertGlobals: true,
-  debug: !gulp.env.production
-};
-var MIN = {
-  suffix: '.min'
+const APP_DIRS = {
+  app: './src/main/app',
+  js: './src/main/app/js',
+  sass: './src/main/app/scss',
+  main: './src/main/app/js/main.js',
+  statics: [
+    './src/main/app/**/*.+(png|jpg|jpeg|ico|json|html|mp3)',
+  ],
 };
 
-// Compile sass files, auto-prefix elements,  copy to app's css directory
-// and creates minified version as well
+const DIST_DIRS = {
+  dist: './dist',
+  css: './dist/css',
+  js: './dist/js',
+  fonts: './dist/fonts'
+};
+
+const EXTERNALS = [
+  { require: 'react' },
+  { require: 'react/addons' },
+  { require: 'react/lib/keyMirror' },
+  { require: 'jquery', expose: 'jquery' },
+  { require: 'flux' },
+  { require: 'events' },
+  { require: 'underscore' },
+];
+
+const DEV_CONFIG = {
+  sass: {
+    style: 'expanded',
+    sourcemap: true,
+    lineNumbers: true,
+  },
+  browserify: {
+    debug: true, // enables source maps
+  },
+  autoprefixer: {
+    browsers: ['last 2 version']
+  },
+};
+
+const PROD_CONFIG = {
+  sass: {
+    style: 'compressed'
+  },
+  browserify: { },
+  autoprefixer: {
+    browsers: ['last 2 version']
+  },
+};
+
+const CONFIG = isProduction != null ? PROD_CONFIG : DEV_CONFIG;
+
+
+
+  /* Clean the dist folder */
+gulp.task('clean', function() {
+  return del([DIST_DIRS.dist]);
+});
+
+
+  /* Copy all the fonts into the fonts folder */
+gulp.task('fonts', function() {
+  return gulp.src('node_modules/font-awesome/fonts/*')
+    .pipe(gulp.dest(DIST_DIRS.fonts));
+});
+
+
+  /* Copy all the statics into the dist folder */
+gulp.task('statics', function() {
+  return gulp.src(APP_DIRS.statics, { base: APP_DIRS.app })
+    .pipe(gulp.dest(DIST_DIRS.dist));
+});
+gulp.task('statics-watch', ['statics'], browserSync.reload);
+
+
+
+  /* Compile the scss files, copy to dist folder, and if not production, auto inject css instead of reload */
 gulp.task('styles', function() {
-  return sass(sassDir, SASS_CONFIG)
-    .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1'))
-    .pipe(gulp.dest(distCssDir))
-    .pipe(rename(MIN))
-    .pipe(minifycss())
-    .pipe(gulp.dest(distCssDir));
+  return sass(APP_DIRS.sass, CONFIG.sass)
+    .pipe(postcss([
+      autoprefixer(CONFIG.autoprefixer),
+    ]))
+    .pipe(gulpif(isProduction, rename({ suffix: '.min' })))
+    .pipe(gulp.dest(DIST_DIRS.css))
+    .pipe(gulpif(!isProduction, browserSync.stream()));
 });
+gulp.task('styles-watch', ['styles']);
 
 
-// Compiles the react files into a single app.js and copie it to the distribution folder
-gulp.task('scripts', function() {
-  return gulp.src(jsDir + '/app.js')
-    .pipe(browserify(BROWSERIFY_CONFIG))
-    .pipe(gulp.dest(distJsDir));
-});
-
-
-// Copies all the libs to the distribution folder
-gulp.task('libs', function() {
-  var bootstrap = gulp.src(libDir + '/bootstrap/dist/**/*')
-    .pipe(gulp.dest(distLibDir + '/bootstrap'));
-
-  var fontAwesomeCss = gulp.src(libDir + '/font-awesome/**/*.css')
-    .pipe(gulp.dest(distLibDir + '/font-awesome'));
-
-  var fontAwesomeFonts = gulp.src(libDir + '/font-awesome/fonts/*')
-    .pipe(gulp.dest(distLibDir + '/font-awesome/fonts'));
-
-  var jquery = gulp.src(libDir + '/jquery/dist/*.js')
-    .pipe(gulp.dest(distLibDir + '/jquery'));
-
-  var normalize = gulp.src(libDir + '/normalize-css/normalize.css')
-    .pipe(gulp.dest(distLibDir + '/normalize-css'));
-
-  return merge(bootstrap, fontAwesomeCss, fontAwesomeFonts, jquery, normalize);
-});
-
-
-// Copies all the html pages to the dist folder
-gulp.task('pages', function() {
-  return gulp.src(srcDir + '/**/*.html')
-    .pipe(gulp.dest(distDir));
-});
-
-
-gulp.task('imgs', function() {
-  return gulp.src(srcDir + '/imgs/**/*')
-    .pipe(gulp.dest(distImgDir));
-});
-
-
-// builds the distribution package by copying all the libs, css, javascript files, and html pages to the dist folder.
-gulp.task('dist', ['libs', 'styles', 'scripts', 'pages', 'imgs']);
-
-
-// Watches files to auto compile and copy
-gulp.task('watch', function() {
-  // Watching for compiling
-  gulp.watch(sassDir + '/**/*.scss', ['styles']);
-  gulp.watch(jsDir + '/**/*.js', ['scripts']);
-  gulp.watch(srcDir + '/**/*.html', ['pages']);
-
-  // Watching to live reload
-  gulp.watch(distDir + '/**/*.html', liveReload);
-  gulp.watch(distCssDir + '/**/*.css', liveReload);
-  gulp.watch(distJsDir + '/**/*.js', liveReload);
-});
-
-
-
-// Starts the development server on port 4000
-gulp.task('express', function() {
-  var express = require('express');
-  var app     = express();
-  app.use(require('connect-livereload')({port: 4002}));
-  app.use(express.static(path.join(__dirname, distDir)));
-  app.listen(4000);
-});
-
-var tinylr;
-gulp.task('livereload', function() {
-  tinylr = require('tiny-lr')();
-  tinylr.listen(4002);
-});
-
-
-function liveReload(event) {
-  var fileName = path.relative(__dirname, event.path);
-
-  tinylr.changed({
-    body: {
-      files: [fileName]
-    }
-  });
+function bundle(b, fileName, type) {
+  return b.bundle()
+    .on('error', function(err) {
+      console.error('[' + type + ' ERROR]', err.message);
+      this.emit('end');
+    })
+    .pipe(source(fileName))
+    .pipe(gulpif(argv.producion, uglify()))
+    .pipe(gulpif(argv.production, rename({ suffix: '.min' })))
+    .pipe(gulp.dest(DIST_DIRS.js));
 }
 
+  /* Bundle the 3rdparty scripts to be used from the main app */
+gulp.task('3rdparty-scripts', function() {
+  var vendors = browserify();
+  EXTERNALS.forEach(function(external) {
+    if(external.expose) {
+      vendors.require(external.require, { expose: external.expose });
+    } else {
+      vendors.require(external.require);
+    }
+  });
+
+  return bundle(vendors, '3rdparty.js', '3RDPARTY');
+
+
+});
+gulp.task('3rdparty-scripts-watch', ['3rdparty-scripts'], browserSync.reload);
+
+
+gulp.task('scripts', function() {
+  var b = browserify(CONFIG.browserify);
+  b.add(APP_DIRS.main);
+
+  EXTERNALS.forEach(function(external) {
+    if(external.expose) {
+      b.external(external.expose);
+    } else {
+      b.external(external.require);
+    }
+  });
+  
+  return bundle(b, 'main.js', 'MAIN');
+});
+gulp.task('scripts-watch', ['scripts'], browserSync.reload);
 
 
 
 
-gulp.task('default', ['dist', 'express', 'livereload', 'watch']);
+/* Distribute the application with all files into the dist folder */
+gulp.task('dist', ['scripts', '3rdparty-scripts', 'styles', 'fonts', 'statics']);
+
+
+/* Start up browsersync and start watching files */
+gulp.task('serve', ['dist'], function() {
+  browserSync({
+    server: {
+      baseDir: DIST_DIRS.dist
+    }
+  });
+
+  gulp.watch(APP_DIRS.js + '/**/*.js', ['scripts-watch']);
+  gulp.watch(APP_DIRS.sass + '/**/*.scss', ['styles-watch']);
+  gulp.watch(APP_DIRS.statics, ['statics-watch']);
+});
+
+
+gulp.task('default', ['serve']);

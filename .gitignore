@@ -9,4 +9,4 @@ node_modules
 bower_components
 *.log
 dist
-src/main/frontend/js/config/config.js
+src/main/app/js/config.js

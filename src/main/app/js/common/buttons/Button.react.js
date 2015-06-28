@@ -52,7 +52,10 @@ var Button = React.createClass({
   },
 
   hideHelpText: function(e) {
-    clearTimeout(callback);
+    if(callback) {
+      clearTimeout(callback);
+    }
+
     callback = null;
     this.setState({ isHelpTextDisplayed: false });
   },

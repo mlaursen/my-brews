@@ -8,7 +8,7 @@ var Route = Router.Route;
 var DefaultRoute = Router.DefaultRoute;
 var NotFoundRoute = Router.NotFoundRoute;
 
-var App = require('./App.react');
+var Navigation = require('./common/Navigation.react');
 var Beers = require('./beers/Beers.react');
 var Beer = require('./beers/Beer.react');
 var Home = require('./common/Home.react');
@@ -18,7 +18,7 @@ var NoContent = require('./common/NoContent.react');
  * nesting is if you want something to render in the same page
  */
 var routes = (
-  <Route handler={App}>
+  <Route handler={Navigation}>
     <DefaultRoute handler={Home} />
     <Route path="beers" handler={Beers} />
     <Route path="beers/:id" handler={Beer} />

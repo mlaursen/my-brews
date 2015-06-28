@@ -28,6 +28,7 @@ var IconButton = React.createClass({
     var content = this.props.faIcon ?
       <span className={'fa fa-' + this.props.faIcon} /> :
       this.props.children;
+
     return (
       <Button {...this.props} btnClasses={['icon-btn'].concat(this.props.btnClasses)}>
         {content}

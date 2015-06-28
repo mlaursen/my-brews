@@ -1,4 +1,4 @@
-var IconButton = require('./IconButton.react');
+var HamburgerButton = require('./HamburgerButton.react');
 var DropdownMenu = require('./DropdownMenu.react');
 
 
@@ -61,24 +61,14 @@ var HamburgerMenu = React.createClass({
   render: function() {
     var menuCss = ['dd-menu'].concat(this.props.menuClasses).join(' ');
     var itemClasses = ['dd-menu-items'];
-    var btnClasses = ['hamburger-btn'];
-    if(this.props.isOpen) {
-      btnClasses.push('hamburger-open');
-    } else {
+    if(!this.props.isOpen) {
       itemClasses.push('items-hidden');
-    }
-
-    if(this.props.isLarge) {
-      btnClasses.push('hamburger-btn-lg');
     }
 
     return (
       <DropdownMenu isOpen={this.props.isOpen} forceCloseFunction={this.closeMenu}
                menuItems={this.props.children} menuClasses={this.props.menuClasses}>
-        <IconButton btnClasses={btnClasses} onBtnClick={this.toggleMenu} label={this.props.label} helpPosition={this.props.helpPosition}>
-          <div className="left-bars" />
-          <div className="right-bars" />
-        </IconButton>
+         <HamburgerButton isOpen={this.props.isOpen} onBtnClick={this.toggleMenu} label={this.props.label} helpPosition={this.props.helpPosition} />
       </DropdownMenu>
     );
   }

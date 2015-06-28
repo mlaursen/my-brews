@@ -6,11 +6,14 @@
 @import "helpers/variables";
 @import "helpers/animations";
 @import "helpers/mixins";
+@import "helpers/commons";
 
 @import "components/dropdown-menu";
 @import "components/buttons";
 @import "components/hamburger-menu";
 @import "components/inputs";
 @import "components/on-off-switch";
+
+@import "pages/beers";
 
 @import "layout/content";

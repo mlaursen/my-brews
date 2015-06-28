@@ -36,16 +36,18 @@ const EXTERNALS = [
   { require: 'react' },
   { require: 'react/addons' },
   { require: 'react/lib/keyMirror' },
+  { require: 'react-router' },
   { require: 'jquery', expose: 'jquery' },
   { require: 'flux' },
   { require: 'events' },
   { require: 'underscore' },
+  { require: 'request' },
 ];
 
 const DEV_CONFIG = {
   sass: {
     style: 'expanded',
-    sourcemap: true,
+    //sourcemap: true,
     lineNumbers: true,
   },
   browserify: {

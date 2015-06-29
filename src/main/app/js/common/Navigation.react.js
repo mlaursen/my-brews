@@ -7,6 +7,8 @@ var IconButton = require('./buttons/IconButton.react');
 var HamburgerButton = require('./buttons/HamburgerButton.react');
 
 var Navigation = React.createClass({
+  mixins: [Router.State],
+
   getInitialState: function() {
     return {
       isMenuVisible: false
@@ -71,9 +73,9 @@ var Navigation = React.createClass({
         <CSSTransitionGroup transitionName="slide-nav" component="div" ref="menu">
           {nav}
         </CSSTransitionGroup>
-        <section>
-          <RouteHandler />
-        </section>
+        <CSSTransitionGroup transitionName="slide-nav" component="section"> 
+          <RouteHandler key={this.getPath()} />
+        </CSSTransitionGroup>
       </div>
     );
   }

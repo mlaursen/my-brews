@@ -12,7 +12,7 @@ module.exports = {
    * Initial idea from: https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750
    */
   init: function(Component, stateFunc, fluxStores, apiFuncs) {
-    const FluxIt = React.createClass({
+    var FluxIt = React.createClass({
 
       /**
        * Call every api function that was passed in.

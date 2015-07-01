@@ -20,9 +20,7 @@ const APP_DIRS = {
   js: './src/main/app/js',
   sass: './src/main/app/scss',
   main: './src/main/app/js/main.js',
-  statics: [
-    './src/main/app/**/*.+(png|jpg|jpeg|ico|json|html|mp3)',
-  ],
+  statics: './src/main/app/**/*.+(png|jpg|jpeg|ico|json|html|mp3|ttf)',
 };
 
 const DIST_DIRS = {

@@ -19,9 +19,9 @@ var NoContent = require('./common/NoContent.react');
  */
 var routes = (
   <Route handler={Navigation}>
-    <DefaultRoute handler={Home} />
-    <Route path="beers" handler={Beers} />
-    <Route path="beers/:id" handler={Beer} />
+    <DefaultRoute name="home" handler={Home} />
+    <Route name="beers" path="beers" handler={Beers} />
+    <Route name="beer" path="beers/:id" handler={Beer} />
     <NotFoundRoute handler={NoContent} />
   </Route>
 );

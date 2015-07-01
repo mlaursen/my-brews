@@ -1,22 +1,23 @@
-var request = require('request');
+var API = require('../common/API');
 
-var apiUrl = require('../config').API_URL + '/beers';
+var request = API.request;
+var uri = API.uri + '/beers';
 
 var BeerActions = require('./BeerActions');
 
 module.exports = {
   retrieveAllBeers: function() {
-    request(apiUrl, function(error, response, data) {
+    request(uri, function(error, response, data) {
       if(!error) {
-        BeerActions.retrieveAllBeers(JSON.parse(data));
+        BeerActions.retrieveAllBeers(data);
       }
     });
   },
 
   retrieveBeer: function(id) {
-    request(apiUrl + '/' + id, function(error, response, data) {
+    request(uri + '/' + id, function(error, response, data) {
       if(!error) {
-        BeerActions.retrieveBeer(JSON.parse(data));
+        BeerActions.retrieveBeer(data);
       }
     });
   }

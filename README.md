@@ -3,11 +3,9 @@ This is a website for tracking the beers that I brew for the office and at home.
 
 ## Technologies Used
 ##### Front End
-- [SASS][1] with [Compass][2]
-- AngularJS
-- [Font Awesome Icons][3]
-- jQuery (Should get replaced by angular)
-- [moment.js][4]
+- [SASS][1]
+- React
+- Various other libs
 
 ##### Back End / Building
 - Java 8 and JEE 7.0
@@ -16,7 +14,7 @@ This is a website for tracking the beers that I brew for the office and at home.
 ## Project Requirements
 - [WildFly][5]
 - A Postgres DB
-- Ruby (For SASS and Compass)
+- Ruby (For SASS)
 
 ```
   Database Server   = localhost
@@ -50,44 +48,52 @@ sudo -u mybrews psql -d mybrews -a -f src/main/scripts/tables.sql
 ```
 > This will use the **postgres** admin user to create a new user **mybrews** that only has privileges over the new database **mybrews**. The first command will also prompt for you to enter a password. The third command will run the **tables.sql** database script as the **mybrews** user in the new **mybrews** db.
 
-##### Installing SASS and Compass
+##### Installing SASS
 #### Windows
-This part is kind of a pain.. The rubygems SSL certificate has expired.. So the following steps need to be done laid out in this post on [SSL upgrades on rubygems.org and RubyInstaller versions][6] in github.
+Navigate to http://rubyinstaller.org/ and choose your correct download. This is to install Ruby with the rubygems. Once 
 
-##### Windows And Linux
-Once you have Ruby and the rubygems fixed, you can install sass and compass with the following command
+##### Windows and Linux
+Once you have ruby and rubygems, verify that they are in your path with `ruby -v` and `gem -v`. If they are in your path, you can install sass with
+
 ```bash
-gem install sass compass
+gem install sass
 ```
+
 > Linux might require **sudo**.
 
 ## Building, Deploying, and Running
-##### Compiling SASS
-Navigate to the project home directory and run
-```bash
-compass compile
-```
-This will generate all the SCSS files into css files in the following folder: `src/main/webapp/resources/css`.
-
-If you are doing a bunch of css changes, `compass watch` in the project home directory will automatically auto-compile the css files when a `.scss` files is modified. Neat stuff. The current compass configuration shows the line numbers of how the file got generated and does not minify the css. View `config.rb` for the compass settings.
-
 ##### Adding The Datasource and Postgresql Connector to Wildfly
 Start up your wildfly node and run
+
 ```bash
 mvn install
 ```
-Will add the `postgresql.jar` to your wildfly server and add the **MyBrewsDS** data source. To build and deploy the application, run
+
+Will add the `postgresql.jar` to your wildfly server and add the **MyBrewsDS** data source. 
+
+##### Launching the WebServices
+To build and deploy the application, run
+
 ```bash
 mvn wildfly:deploy
 ```
-when your server is running. Once it has been deployed, you can navigate to **localhost:8080/my-brews** to view the magic.
 
-## Documentation and Dependencies
-If you are interested in viewing the javadoc that is a part of this project and viewing all the dependencies, you can run
+##### Launching the Front End App
+The front end app requires `npm` and `gulp` to be built and manage dependencies.
+
+> Currently, the front end app is only set for development and is running off of browsersync
+
+To install any dependencies, run `npm install`. If new scss depdendencies have been added or this is your first time cloning, run `npm run symlinks` which will create the symlinks in the `src/main/app/scss/vendors` directory. You can view the README.md there as well. (Creating the symlinks will require Admin for Windows).
+
+To install gulp, run `npm install -g gulp`.
+
+Once your dependencies have been set up and gulp has been isntalled, you can launch the front end app with
+
 ```bash
-mvn site
+gulp
 ```
-which will generate a maven site with all dependencies and generated javadoc in  your `/target/site` folder which you can then open and view in a browser.
+
+Super simple! It will distribute all the files in a `dist` folder and open up your browser to `localhost:3000` and you can view the app.
 
 ## Web Services
 
@@ -157,9 +163,16 @@ curl -iX DELETE localhost:8080/my-brews/api/yeasts/1
 ```
 Wala! [Magic!](http://i.imgur.com/t9P566O.jpg])
 
+## Documentation and Dependencies
+If you are interested in viewing the javadoc that is a part of this project and viewing all the dependencies, you can run
+```bash
+mvn site
+```
+which will generate a maven site with all dependencies and generated javadoc in  your `/target/site` folder which you can then open and view in a browser.
+
+
 [1]: http://sass-lang.com/
 [2]: http://compass-style.org
 [3]: http://fortawesome.github.io/Font-Awesome/icons/
-[4]: http://momentjs.com/
 [5]: http://wildfly.org/downloads/
 [6]: https://gist.github.com/luislavena/f064211759ee0f806c88

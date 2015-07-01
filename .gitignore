@@ -10,4 +10,6 @@ bower_components
 *.log
 dist
 src/main/app/js/config.js
+
 src/main/app/scss/vendors/*
+!src/main/app/scss/vendors/README.md

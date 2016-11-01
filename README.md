@@ -50,7 +50,7 @@ sudo -u mybrews psql -d mybrews -a -f src/main/scripts/tables.sql
 
 ##### Installing SASS
 #### Windows
-Navigate to http://rubyinstaller.org/ and choose your correct download. This is to install Ruby with the rubygems. Once 
+Navigate to http://rubyinstaller.org/ and choose your correct download. This is to install Ruby with the rubygems. Once
 
 ##### Windows and Linux
 Once you have ruby and rubygems, verify that they are in your path with `ruby -v` and `gem -v`. If they are in your path, you can install sass with
@@ -69,7 +69,7 @@ Start up your wildfly node and run
 mvn install
 ```
 
-Will add the `postgresql.jar` to your wildfly server and add the **MyBrewsDS** data source. 
+Will add the `postgresql.jar` to your wildfly server and add the **MyBrewsDS** data source.
 
 ##### Launching the WebServices
 To build and deploy the application, run
@@ -154,7 +154,7 @@ curl -H "Content-Type: application/json" \
      -X PUT -d '{"id": "1", "name": "Wyeast #1332 Northwest Ale Yeast", "type": "DRY"}' \
      -i localhost:8080/my-brews/api/yeasts
 ```
-This updates the yeast we just created to have a DRY yeast type. Super exciting!
+This updates the yeast we just created to have a DRY yeast type. Super exciting!!!
 
 #### Deleting Data
 An entity can be deleted by sending a <code>DELETE</code> request to **/api/_{entityName}_/_{id}_**. So lets delete that yeast we just created:
